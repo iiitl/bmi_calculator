@@ -21,7 +21,7 @@
   box-shadow: 0px 0px 12px #ccbdbd;
   border-radius: 8px;
   padding: 3rem;
-  max-width: 600px;
+  width: 550px;
 }
 
 input {
@@ -74,3 +74,18 @@ p {
   height: 200px;
 }
 
+.warning {
+  display: none;
+  width: 80%;
+  text-align: center;
+  /* margin: 24px 0; */
+  color: #e05050;
+}
+
+.Result{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
