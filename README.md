@@ -1,7 +1,12 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Set up the repo
+- Fork the repo
+- Clone it
+- Run npm install after making sure you have node and npm installed
 
+  
 ## Available Scripts
 
 In the project directory, you can run:
