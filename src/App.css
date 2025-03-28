@@ -3,6 +3,8 @@
   --light-text: #000000;
   --dark-bg: #121212;
   --dark-text: #dcdcdc;
+  --card-bg-light: #ffffff;
+  --card-bg-dark: #1e1e1e;
   --primary-color: #007bff;
   --primary-hover: #0056b3;
   --secondary-color: #6c757d;
@@ -29,19 +31,14 @@
   color: var(--dark-text);
 }
 
-/* Logo Styling */
+/* Logo */
 .logo {
-  width: 120px;
+  width: 80px;
   height: auto;
   margin-bottom: 10px;
-  transition: transform var(--transition-speed);
 }
 
-.logo:hover {
-  transform: scale(1.1);
-}
-
-/* Container */
+/* Centered Container */
 .container {
   max-width: 400px;
   margin: auto;
@@ -109,7 +106,7 @@
   background-color: var(--secondary-hover);
 }
 
-/* BMI Result */
+/* Results Section */
 .result {
   margin-top: 20px;
   font-size: 18px;
@@ -130,6 +127,10 @@
   width: 300px;
 }
 
+.dialog-box p {
+  font-size: 18px;
+}
+
 .dialog-btn {
   background: white;
   color: red;
@@ -143,23 +144,6 @@
 
 .dialog-btn:hover {
   background: lightgray;
-}
-
-/* Floating Dark Mode Toggle */
-.dark-mode-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: var(--primary-color);
-  color: white;
-  padding: 10px 15px;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: background var(--transition-speed);
-}
-
-.dark-mode-toggle:hover {
-  background: var(--primary-hover);
 }
 
 /* Responsive */
