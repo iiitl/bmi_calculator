@@ -9,25 +9,33 @@ function App() {
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
 
-  let calcBmi = (event) => {
-    event.preventDefault()
+    // constants for BMI calculation
+  const UNDER_WEIGHT_BMI_LIMIT = 25;
+  const HEALTHY_WEIGHT_BMI_LIMIT = 30;
+  const BMI_COVERSION_FACTOR = 703;
+
+  let calculateBmi = (event) => {
+    event.preventDefault();
     console.log(event);
 
     if (weight === 0 || height === 0) {
-      alert('Please enter a valid weight and height')
+      alert("Please enter a valid weight and height");
     } else {
-      let bmi = (weight / (height * height) * 703)
-      setBmi(bmi.toFixed(1))
+      let bmi = (weight / (height * height)) * BMI_COVERSION_FACTOR;
+      setBmi(bmi.toFixed(1));
 
-      if (bmi < 25) {
-        setMessage('You are underweight')
-      } else if (bmi >= 25 && bmi < 30) {
-        setMessage('You have healthy weight')
+      if (bmi < UNDER_WEIGHT_BMI_LIMIT) {
+        setMessage("You are underweight");
+      } else if (
+        bmi >= UNDER_WEIGHT_BMI_LIMIT &&
+        bmi < HEALTHY_WEIGHT_BMI_LIMIT
+      ) {
+        setMessage("You have healthy weight");
       } else {
-        setMessage('You are overweight')
+        setMessage("You are overweight");
       }
     }
-  }
+  };
 
   let reload = () => {
     window.location.reload()
@@ -38,7 +46,7 @@ function App() {
     <div className="app">
     <div className='container'>
       <h2 className='center'>BMI Calculator</h2>
-        <form onSubmit={calcBmi}>
+        <form onSubmit={calculateBmi}>
           <div>
             <label>Weight (lbs)</label>
             <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
