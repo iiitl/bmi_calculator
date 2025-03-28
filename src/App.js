@@ -23,7 +23,7 @@ function App() {
       alert('Please enter a valid weight and height');
       return;
     }
-
+    
     const { weightInLbs, heightInInches } = convertToImperial(weight, height);
 
     let bmiValue = (weightInLbs / (heightInInches * heightInInches)) * 703;
@@ -37,6 +37,7 @@ function App() {
       setMessage('You are overweight');
     } else {
       setMessage('You are obese');
+
     }
   };
 
