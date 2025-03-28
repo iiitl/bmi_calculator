@@ -6,6 +6,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Clone it
 - Run npm install after making sure you have node and npm installed
 
+## PR guidelines
+- The PR should be made to the develop branch
+- If the PR passes all tests it will be merged
   
 ## Available Scripts
 
