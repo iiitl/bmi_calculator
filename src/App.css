@@ -1,32 +1,109 @@
+
+:root {
+  --light-bg: #ffffff;
+  --light-text: #000000;
+  --dark-bg: #121212;
+  --dark-text: #dcdcdc;
+  --card-bg-light: #ffffff;
+  --card-bg-dark: #1e1e1e;
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --secondary-color: #6c757d;
+  --secondary-hover: #5a6268;
+  --dialog-bg: rgba(255, 0, 0, 0.9);
+  --dialog-text: #ffffff;
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+}
+
 /* Light Mode */
 .app {
   text-align: center;
   padding: 20px;
-  background-color: white;
-  color: black;
+  background-color: var(--light-bg);
+  color: var(--light-text);
   min-height: 100vh;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
 /* Dark Mode */
 .app.dark {
-  background-color: #121212;
-  color: white;
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
 }
 
-/* Toggle Button */
-.toggle-btn {
-  padding: 10px 15px;
+/* Centered Container */
+.container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Input Groups */
+.input-group {
   margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  transition: border-color var(--transition-speed);
+}
+
+.input-group input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
   border: none;
   cursor: pointer;
-  font-size: 16px;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-speed);
 }
 
-.toggle-btn:hover {
-  background-color: #0056b3;
+.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.secondary:hover {
+  background-color: var(--secondary-hover);
+}
+
+/* Results Section */
+.result {
+  margin-top: 20px;
+  font-size: 18px;
 }
 
 /* Dialog Box */
@@ -35,10 +112,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 0, 0, 0.9);
+  background: var(--dialog-bg);
   padding: 20px;
-  color: white;
-  border-radius: 10px;
+  color: var(--dialog-text);
+  border-radius: var(--border-radius);
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   width: 300px;
@@ -51,15 +128,26 @@
 .dialog-btn {
   background: white;
   color: red;
-  padding: 8px 15px;
+  padding: 10px 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   font-size: 16px;
+  transition: background var(--transition-speed);
 }
-
-
 
 .dialog-btn:hover {
   background: lightgray;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container {
+    width: 90%;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 10px;
+  }
 }
