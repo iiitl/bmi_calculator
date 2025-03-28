@@ -22,6 +22,18 @@ function App() {
       setError('Please enter valid positive numbers for weight and height.');
       setShowDialog(true); 
       return;
+
+      
+        if (bmi < 18.5) {
+          setMessage('You are underweight')
+        }  else if (bmi >= 18.5 && bmi < 25) {
+          setMessage('You have healthy weight')
+        } else if (bmi>=25 && bmi <30) {
+          setMessage('You are overweight')
+        }else{
+          setMessage('You are obese')
+        }
+      
     }
 
     let bmiValue = (weightNum / (heightNum * heightNum)) * 703;
