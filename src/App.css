@@ -1,10 +1,16 @@
 .App {
   text-align: center;
+  padding:20px;
+  background-color:blue;
+  font-family:Arial,sans-serif;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+.container{
+  background-color:white;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -21,7 +27,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color:white;
 }
 
 .App-link {
@@ -36,3 +42,29 @@
     transform: rotate(360deg);
   }
 }
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    width: 95%;
+    max-width: 380px;
+  }
+
+  h2.center {
+    font-size: 1.8rem;
+  }
+
+  input[type="text"], button {
+    font-size: 1rem;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+    width: 90%;
+    max-width: 340px;
+  }}

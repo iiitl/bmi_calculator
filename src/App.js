@@ -4,6 +4,11 @@ import React, {useState} from 'react'
 
 function App() {
   // state
+  const bmi_factor = 703;
+  const underweight_condition = 18.5;
+  const healthy_condition = 24.9;
+  const overweight_condition = 29.9;
+
   const [weight, setWeight] = useState(0)
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
@@ -16,15 +21,15 @@ function App() {
     if (weight === 0 || height === 0) {
       alert('Please enter a valid weight and height')
     } else {
-      let bmi = (weight / (height * height) * 703)
+      let bmi = (weight / (height * height) * bmi_factor)
       setBmi(bmi.toFixed(1))
 
       
-        if (bmi < 18.5) {
+        if (bmi < underweight_condition) {
           setMessage('You are underweight')
-        }  else if (bmi >= 18.5 && bmi < 25) {
+        }  else if (bmi >= underweight_condition && bmi < healthy_condition) {
           setMessage('You have healthy weight')
-        } else if (bmi>=25 && bmi <30) {
+        } else if (bmi>=healthy_condition && bmi <overweight_condition) {
           setMessage('You are overweight')
         }else{
           setMessage('You are obese')
