@@ -1,20 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Inter', sans-if;
+  font-family: 'Inter', sans-serif;
 }
 
 .app {
   display: flex;
-  
   justify-content: center;
   align-items: center;
   width: 100vw;
   min-height: 100vh;
+  transition: background-color 0.3s ease;
 }
 
 .container {
@@ -22,6 +21,7 @@
   border-radius: 8px;
   padding: 3rem;
   max-width: 600px;
+  transition: all 0.3s ease;
 }
 
 input {
@@ -30,6 +30,7 @@ input {
   padding: 15px 4px;
   margin: 8px 0;
   border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 .btn {
@@ -44,13 +45,10 @@ input {
   border-radius: 8px;
   cursor: pointer;
 }
-/* unvisited link */
-
-
 
 .btn-outline {
   background-color: #ededed;
-    color: #000000;
+  color: #000000;
 }
 
 .center {
@@ -58,19 +56,53 @@ input {
   margin: 24px 0;
   color: #354665;
 }
-.input_val
-{
-  color: #354665;
-}
-p {
-  margin: 10px 0;
+
+/* Dark Mode Styles */
+.app.dark {
+  background-color: #1a1a1a;
 }
 
-.img-container {
-  text-align: center;
+.container.dark {
+  background-color: #2d2d2d;
+  box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
-.img-container img {
-  height: 200px;
+.container.dark input {
+  background-color: #3d3d3d;
+  color: #ffffff;
+  border: 1px solid #4d4d4d;
 }
 
+.container.dark .btn {
+  background-color: #0077EE;
+  color: #ffffff;
+}
+
+.container.dark .btn-outline {
+  background-color: #3d3d3d;
+  color: #ffffff;
+}
+
+.container.dark .center {
+  color: #ffffff;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
