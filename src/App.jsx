@@ -16,7 +16,7 @@ function App() {
     if (weight === 0 || height === 0) {
       alert('Please enter a valid weight and height')
     } else {
-      let bmi = (weight / (height * height) * 703)
+      let bmi = (weight / (height * height) )
       setBmi(bmi.toFixed(1))
 
       
@@ -44,12 +44,12 @@ function App() {
       <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
-            <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <label>Weight (kg)</label>
+            <input type="text" placeholder='Enter Weight in kg' value={weight} onChange={(e) => setWeight(e.target.value)} />
           </div>
           <div>
-            <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            <label>Height (metre)</label>
+            <input type="text" placeholder='Enter height in metre' value={height} onChange={(event) => setHeight(event.target.value)} />
           </div>
           <div>
             <button className='btn' type='submit'>Submit</button>
