@@ -1,63 +1,97 @@
 import './App.css';
-import './index.css'
-import React, {useState} from 'react'
+import './index.css';
+import React, { useState } from 'react';
 
 function App() {
-  // state
-  const [weight, setWeight] = useState(0)
-  const [height, setHeight] = useState(0)
-  const [bmi, setBmi] = useState('')
-  const [message, setMessage] = useState('')
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
+  const [bmi, setBmi] = useState('');
+  const [message, setMessage] = useState('');
+  const [weightUnit, setWeightUnit] = useState('kg');
+  const [heightUnit, setHeightUnit] = useState('cm');
 
-  let calcBmi = (event) => {
-    event.preventDefault()
-    console.log(event);
+  const convertToImperial = (weight, height) => {
+    let weightInLbs = weightUnit === 'kg' ? weight * 2.20462 : weight;
+    let heightInInches = heightUnit === 'cm' ? height * 0.393701 : heightUnit === 'm' ? height * 39.3701 : height;
+    return { weightInLbs, heightInInches };
+  };
 
-    if (weight === 0 || height === 0) {
-      alert('Please enter a valid weight and height')
-    } else {
-      let bmi = (weight / (height * height) * 703)
-      setBmi(bmi.toFixed(1))
+  const calcBmi = (event) => {
+    event.preventDefault();
 
-      if (bmi < 25) {
-        setMessage('You are underweight')
-      } else if (bmi >= 25 && bmi < 30) {
-        setMessage('You have healthy weight')
-      } else {
-        setMessage('You are overweight')
-      }
+    if (!weight || !height || weight <= 0 || height <= 0) {
+      alert('Please enter a valid weight and height');
+      return;
     }
-  }
 
-  let reload = () => {
-    window.location.reload()
-  }
+    const { weightInLbs, heightInInches } = convertToImperial(weight, height);
 
-  
+    let bmiValue = (weightInLbs / (heightInInches * heightInInches)) * 703;
+    setBmi(bmiValue.toFixed(1));
+
+    if (bmiValue < 18.5) {
+      setMessage('You are underweight');
+    } else if (bmiValue >= 18.5 && bmiValue < 25) {
+      setMessage('You have a healthy weight');
+    } else if (bmiValue >= 25 && bmiValue < 30) {
+      setMessage('You are overweight');
+    } else {
+      setMessage('You are obese');
+    }
+  };
+
+  const reset = () => {
+    setWeight('');
+    setHeight('');
+    setBmi('');
+    setMessage('');
+    setWeightUnit('kg');
+    setHeightUnit('cm');
+  };
+
   return (
     <div className="app">
-    <div className='container'>
-      <h2 className='center'>BMI Calculator</h2>
+      <div className="container">
+        <h2 className="center">BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
-            <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <label>Weight</label>
+            <input
+              type="number"
+              placeholder="Enter weight"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+            />
+            <select value={weightUnit} onChange={(e) => setWeightUnit(e.target.value)}>
+              <option value="kg">kg</option>
+              <option value="lbs">lbs</option>
+            </select>
           </div>
           <div>
-            <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            <label>Height</label>
+            <input
+              type="number"
+              placeholder="Enter height"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+            />
+            <select value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)}>
+              <option value="cm">cm</option>
+              <option value="m">m</option>
+              <option value="in">inches</option>
+            </select>
           </div>
           <div>
-            <button className='btn' type='submit'>Submit</button>
-            <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
+            <button className="btn" type="submit">Submit</button>
+            <button className="btn btn-outline" type="button" onClick={reset}>Reset</button>
           </div>
         </form>
-        <div className='center'>
+        <div className="center">
           <h3>Your BMI is: {bmi}</h3>
           <p>{message}</p>
         </div>
+      </div>
     </div>
-  </div>
   );
 }
 
