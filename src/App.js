@@ -1,6 +1,6 @@
 import './App.css';
-import './index.css';
 import React, { useState } from 'react';
+import logo from './logo.png'; // Ensure 'logo.png' is in 'src' folder
 
 function App() {
   const [weight, setWeight] = useState('');
@@ -8,11 +8,10 @@ function App() {
   const [bmi, setBmi] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const [showDialog, setShowDialog] = useState(false); 
-
+  const [showDialog, setShowDialog] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
-  let calcBmi = (event) => {
+  const calcBmi = (event) => {
     event.preventDefault();
 
     let weightNum = parseFloat(weight);
@@ -20,7 +19,7 @@ function App() {
 
     if (isNaN(weightNum) || isNaN(heightNum) || weightNum <= 0 || heightNum <= 0) {
       setError('Please enter valid positive numbers for weight and height.');
-      setShowDialog(true); 
+      setShowDialog(true);
       return;
     }
 
@@ -31,10 +30,19 @@ function App() {
       setMessage('You are underweight');
     } else if (bmiValue >= 18.5 && bmiValue < 25) {
       setMessage('You have a healthy weight');
-    } else {
+    } else if (bmiValue >= 25 && bmiValue < 30) {
       setMessage('You are overweight');
+    } else {
+      setMessage('You are obese');
     }
   };
+
+  const getMessageColor = () => {
+    if (message.includes('healthy')) return 'green';
+    if (message.includes('overweight')) return 'yellow';
+    return 'red';
+  };
+
   let resetForm = () => {
     setWeight('');
     setHeight('');
@@ -45,26 +53,30 @@ function App() {
   return (
     <div className={`app ${darkMode ? 'dark' : 'light'}`}>
       <div className='container'>
+
+        {/* Logo */}
+        <img src={logo} alt="BMI Logo" className="logo" />
+
         <h2 className='center'>BMI Calculator</h2>
 
-        {/* Dark Mode Toggle Button */}
-        <button className="toggle-btn" onClick={() => setDarkMode(!darkMode)}>
-          {darkMode ? 'Light Mode ☀️' : 'Dark Mode 🌙'}
+        {/* Floating Dark Mode Toggle */}
+        <button className="dark-mode-toggle" onClick={() => setDarkMode(!darkMode)}>
+          {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
         </button>
 
         <form onSubmit={calcBmi}>
-          <div>
+          <div className='input-group'>
             <label>Weight (lbs)</label>
             <input 
               type="number" 
-              placeholder='Enter Weight in lbs' 
+              placeholder='Enter weight in lbs' 
               value={weight} 
               onChange={(e) => setWeight(e.target.value)} 
               min="1"
             />
           </div>
-          <div>
-            <label>Height (in)</label>
+          <div className='input-group'>
+            <label>Height (inches)</label>
             <input 
               type="number" 
               placeholder='Enter height in inches' 
@@ -73,19 +85,21 @@ function App() {
               min="1"
             />
           </div>
-          <div>
-            <button className='btn' type='submit'>Submit</button>
-            <button className='btn btn-outline' type='button' onClick={resetForm}>Reset</button>
+          <div className='button-group'>
+            <button className='btn primary' type='submit'>Calculate BMI</button>
+            <button className='btn secondary' type='button' onClick={resetForm}>Reset</button>
           </div>
         </form>
 
-        <div className='center'>
-          <h3>Your BMI is: {bmi}</h3>
-          <p>{message}</p>
-        </div>
+        {bmi && (
+          <div className='result'>
+            <h3>Your BMI is: {bmi}</h3>
+            <p style={{ color: getMessageColor() }}>{message}</p>
+          </div>
+        )}
       </div>
 
-      {/* dialog box  */}
+      {/* Dialog Box */}
       {showDialog && (
         <div className="dialog-box">
           <p>{error}</p>
