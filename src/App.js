@@ -21,13 +21,13 @@ function App() {
 
       
         if (bmi < 18.5) {
-          setMessage('You are underweight')
+          setMessage({text:'You are underweight',color:'red'})
         }  else if (bmi >= 18.5 && bmi < 25) {
-          setMessage('You have healthy weight')
+          setMessage({text:'You have healthy weight',color:'green'})
         } else if (bmi>=25 && bmi <30) {
-          setMessage('You are overweight')
+          setMessage({text:'You are overweight',color:'yellow'})
         }else{
-          setMessage('You are obese')
+          setMessage({text:'You are obese',color:'red'})
         }
       
     }
@@ -58,7 +58,7 @@ function App() {
         </form>
         <div className='center'>
           <h3>Your BMI is: {bmi}</h3>
-          <p>{message}</p>
+          <p className={`message ${message.color}`}>{message.text}</p>
         </div>
     </div>
   </div>

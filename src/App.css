@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+.message {
+  font-size: 1.2em;
+  text-align: center;
+}
+.message.green {
+  color: green;
+}
+.message.yellow {
+  color: yellow;
+}
+.message.red {
+  color: red;
+}
