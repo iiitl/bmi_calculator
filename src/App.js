@@ -38,12 +38,10 @@ function App() {
     }
   };
 
-  const resetForm = () => {
-    setWeight(0);
-    setHeight(0);
-    setBmi('');
-    setMessage('');
-  };
+  let reload = () => {
+    window.location.reload()
+  }
+
 
   return (
     <div className="bmi-app">
@@ -70,7 +68,7 @@ function App() {
           </div>
           <div className='bmi-button-group'>
             <button className='bmi-btn' type='submit'>Submit</button>
-            <button className='bmi-btn bmi-btn-outline' type='button' onClick={resetForm}>Reset</button>
+            <button className='bmi-btn bmi-btn-outline' type='button' onClick={reload}>Reload</button>
           </div>
         </form>
         <div className='bmi-result'>
