@@ -73,4 +73,40 @@ p {
 .img-container img {
   height: 200px;
 }
+.dark-mode {
+  background-color: #050222;
+  color: #fff;
+}
+
+.dark-mode h2,.dark-mode .center {
+  color: #fff;
+}
+.dark-mode .input_val {
+  color: #fff;
+}
+.dark-mode .container {
+  background-color: transparent;
+}
+
+.dark-mode .btn {
+  background-color: rgb(3, 3, 90);
+  color: white;
+  border: wheat 1px solid;
+}
+
+.dark-mode .btn-outline {
+  background-color: black;
+  border: 1px solid white;
+}
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  font-size: 24px; 
+  cursor: pointer;
+  margin-top: 20px; 
+}
+
+.dark-mode-toggle:focus {
+  outline: none;
+}
 

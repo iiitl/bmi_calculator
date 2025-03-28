@@ -1,6 +1,8 @@
 import './App.css';
 import './index.css'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import { FaRegSun  } from "react-icons/fa6";
+import { FaMoon } from "react-icons/fa";
 
 function App() {
   // state
@@ -8,6 +10,19 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [darkMode, setDarkMode] = useState(false)
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode)
+  }
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [darkMode]);
 
   let calcBmi = (event) => {
     event.preventDefault()
@@ -43,6 +58,9 @@ function App() {
     <div className='container'>
       <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
+          <div className='center'>
+          <button onClick={toggleDarkMode} className='dark-mode-toggle'>{darkMode?<FaRegSun style={{ color: '#FFD700' }} /> : <FaMoon />}</button>
+          </div>
           <div>
             <label>Weight (lbs)</label>
             <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
