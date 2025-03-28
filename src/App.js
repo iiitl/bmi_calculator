@@ -9,6 +9,9 @@ function App() {
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
 
+
+  
+
   let calcBmi = (event) => {
     event.preventDefault()
     console.log(event);
