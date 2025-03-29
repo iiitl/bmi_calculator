@@ -58,6 +58,7 @@ input {
   margin: 24px 0;
   color: #354665;
 }
+
 .input_val
 {
   color: #354665;
@@ -73,4 +74,46 @@ p {
 .img-container img {
   height: 200px;
 }
+
+/* colour changing code */
+.text-red{
+  color:red;
+}
+.text-green{
+  color:green;
+}
+.text-yellow{
+  color:rgb(233, 233, 27);
+}
+
+
+
+/* dark mode css */
+.darkmode{
+  margin: 10px;
+  padding: 8px 16px;
+  background-color: #333;
+  color:white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.dark-mode {
+  background-color: #222; 
+  color: #fff; 
+}
+
+.dark-mode .container {
+  background-color: #333;
+  color: #fff;
+  box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode input, .dark-mode select {
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #666;
+}
+
+
 
