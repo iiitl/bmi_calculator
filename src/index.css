@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root {
+  --background-color: #ffffff;
+  --text-color: #354665;
+  --box-shadow-color: #ccbdbd;
+  --border-color: #333;
+  --button-bg: #0077EE;
+  --button-text: #fff;
+  --input-bg: #ffffff;
+}
 
+[data-theme="dark"] {
+  --background-color: #1e1e1e;
+  --text-color: #f5f5f5;
+  --box-shadow-color: #444;
+  --border-color: #888;
+  --button-bg: #005bb5;
+  --button-text: #ffffff;
+  --input-bg: #2c2c2c;
+}
 
 * {
   box-sizing: border-box;
@@ -7,10 +25,15 @@
   padding: 0;
   font-family: 'Inter', sans-if;
 }
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
 
 .app {
   display: flex;
-  
   justify-content: center;
   align-items: center;
   width: 100vw;
@@ -18,10 +41,12 @@
 }
 
 .container {
-  box-shadow: 0px 0px 12px #ccbdbd;
+  box-shadow: 0px 0px 12px var(--box-shadow-color);
   border-radius: 8px;
   padding: 3rem;
   max-width: 600px;
+  background-color: var(--background-color);
+  min-height: 650px;
 }
 
 input {
@@ -30,6 +55,9 @@ input {
   padding: 15px 4px;
   margin: 8px 0;
   border-radius: 8px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
 }
 
 .btn {
@@ -38,11 +66,12 @@ input {
   font-size: 1.2rem;
   margin: 8px 0;
   padding: 15px 0;
-  background-color: #0077EE;
-  color: #fff;
-  border: 1px solid #333;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 /* unvisited link */
 
@@ -52,15 +81,18 @@ input {
   background-color: #ededed;
     color: #000000;
 }
+.btn:hover {
+  opacity: 0.9;
+}
 
 .center {
   text-align: center;
   margin: 24px 0;
-  color: #354665;
+  color:  var(--text-color);
 }
 .input_val
 {
-  color: #354665;
+  color:  var(--text-color);
 }
 p {
   margin: 10px 0;
@@ -73,4 +105,4 @@ p {
 .img-container img {
   height: 200px;
 }
-
+ 
