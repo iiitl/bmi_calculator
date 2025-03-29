@@ -47,7 +47,7 @@ function App() {
   return (
     <div className="app">
     <div className='container'>
-    <button id="darkModeToggle" onClick={DarkMode}> Toggle Dark Mode </button>
+    <button id="darkModeToggle" onClick={toggleDarkMode}> Toggle Dark Mode </button>
       <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
