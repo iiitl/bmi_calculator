@@ -12,6 +12,8 @@ function App() {
   const [heightUnit, setHeightUnit] = useState('m')
 
   const [colourClass, setClass]= useState('white');
+
+  
   let calcBmi = (event) => {
     event.preventDefault()
     console.log(event);
@@ -20,22 +22,9 @@ function App() {
       alert('Please enter a valid weight and height')
     } else {
       let weightInKg = weight;        
-      if (weightUnit === 'g') weightInKg = weight / 1000;
-      
       if (weightUnit === 'lbs') weightInKg = weight * 0.4535;
-      if (weightUnit === 'oz') weightInKg = weight * 0.0283;
-      if (weightUnit === 'mg') weightInKg = weight / 1000000;
-      
-     
-      
-      if (weightUnit === 'lbs') weightInKg = weight * 0.4535;
-      if (weightUnit === 'oz') weightInKg = weight * 0.0283;
-      if (weightUnit === 'mg') weightInKg = weight / 1000000;
-      
      
       let heightInM = height;
-      if (heightUnit === 'cm') heightInM = height / 100;
-      if (heightUnit === 'ft') heightInM = height * 0.3048;
       if (heightUnit === 'in') heightInM = height * 0.0254;
       let bmi = (weightInKg / (heightInM * heightInM) )
       
@@ -76,11 +65,7 @@ function App() {
             <select value={weightUnit} onChange={(e) => setWeightUnit(e.target.value)}>
 
               <option value="kg">Kg (Kilograms)</option>
-              <option value="g">g (Grams)</option>
               <option value="lbs">lbs (Pounds)</option>
-              <option value="mg">mg (Milligrams)</option>
-              
-              <option value="oz">oz (Ounces)</option>
 
             </select>
           </div>
@@ -90,9 +75,6 @@ function App() {
             <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
             <select value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)}>
               <option value="m">m (Meters)</option>
-              
-              <option value="cm">cm (Centimeters)</option>
-              <option value="ft">ft (Feet)</option>
               <option value="in">in (Inches)</option>
             </select>
           </div>
