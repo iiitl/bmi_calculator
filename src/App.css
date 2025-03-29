@@ -1,3 +1,22 @@
+:root {
+  --primary-bg: #f8f9fa;
+  --secondary-bg: white;
+  --box-shadow: #ccbdbd;
+  --primary-text: #354665;
+  --input-border: #ccc;
+  --btn-primary: #0077EE;
+  --btn-primary-text: #fff;
+  --btn-outline-bg: #ededed;
+  --btn-outline-text: #000;
+  --overlay-bg: rgba(0, 0, 0, 0.3);
+  --alert-bg: white;
+  --alert-text: #354665;
+  --alert-btn-bg: #0077EE;
+  --alert-btn-text: #fff;
+}
+
+
+
 .App {
   text-align: center;
 }
@@ -35,4 +54,42 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Translucent Overlay Background */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* translucent black */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Enhanced and Colorful Alert Box Design */
+.alert-box {
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  padding: 25px 30px;
+  border-radius: 10px;
+  text-align: center;
+  border: 2px solid #ff6f61;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  max-width: 90%;
+}
+
+.alert-box p {
+  color: #fff;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.alert-box button {
+  background: var(--alert-btn-bg);
+  color: var(--alert-btn-text);
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
 }
