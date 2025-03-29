@@ -8,10 +8,26 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
-
+  const [heightError, setHeightError] = useState('')
+  const [weightError, setWeightError] = useState('')
   let calcBmi = (event) => {
     event.preventDefault()
     console.log(event);
+
+    if(isNaN(weight) || isNaN(height) || parseFloat(height) <= 0 || parseFloat(weight) <= 0){
+        setMessage("Enter a valid weight and height")
+        if(isNaN(height) || parseFloat(height) <= 0){
+          setHeightError('Please enter a valid height')
+        }
+        if(isNaN(weight) || parseFloat(weight) <= 0){
+          setWeightError('Please enter a valid weight')
+        }
+        return;
+    }else{
+      setMessage('')
+      setHeightError('')
+      setWeightError('')
+    }
 
     if (weight === 0 || height === 0) {
       alert('Please enter a valid weight and height')
@@ -46,10 +62,12 @@ function App() {
           <div>
             <label>Weight (lbs)</label>
             <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <p className='error'>{weightError}</p>
           </div>
           <div>
             <label>Height (in)</label>
             <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            <p className='error'>{heightError}</p>
           </div>
           <div>
             <button className='btn' type='submit'>Submit</button>
