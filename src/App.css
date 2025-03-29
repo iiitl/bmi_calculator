@@ -69,3 +69,31 @@ select {
   border-radius: 4px;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .App-header {
+    font-size: 16px;
+    padding: 1rem;
+  }
+  .btn, .btn-outline {
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+  }
+  input[type="text"], select {
+    padding: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header {
+    font-size: 14px;
+  }
+  .btn, .btn-outline {
+    padding: 0.4rem 0.8rem;
+    font-size: 12px;
+  }
+  input[type="text"], select {
+    width: 100%;
+    padding: 0.3rem;
+  }
+}
