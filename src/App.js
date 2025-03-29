@@ -40,13 +40,13 @@ function App() {
       calculatedBmi = weight / (heightInMeters * heightInMeters);
     } else if (weightUnit === 'kg' && heightUnit === 'inches') {
       
-      const weightInKg = weight * 0.453592;
-      const heightInCm = height * 2.54;
+      const weightInKg = weight;
+      const heightInCm = height*2.54 ;
       const heightInMeters = heightInCm / 100;
       calculatedBmi = weightInKg / (heightInMeters * heightInMeters);
     } else if (weightUnit === 'lbs' && heightUnit === 'cm') {
       
-      const weightInLbs = weight * 2.20462;
+      const weightInLbs = weight*0.453 ;
       const heightInMeters = height / 100;
       calculatedBmi = weightInLbs / (heightInMeters * heightInMeters);
     }
