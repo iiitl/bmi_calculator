@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+/* Minimal styling for a select dropdown */
+select {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+}
+
+select:hover{
+  border-color: #888;
+}

@@ -8,16 +8,21 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [unit, setUnit] = useState("metric")
 
   let calcBmi = (event) => {
     event.preventDefault()
     console.log(event);
-
+    let bmiCalc;
     if (weight === 0 || height === 0) {
       alert('Please enter a valid weight and height')
     } else {
-      let bmi = (weight / (height * height) * 703)
-      setBmi(bmi.toFixed(1))
+      if(unit == "metric"){
+        bmiCalc = (weight)/(height*height)
+      }else{
+        bmiCalc = (weight / (height * height) * 703)
+      }
+      setBmi(bmiCalc.toFixed(1))
 
       
         if (bmi < 18.5) {
@@ -44,11 +49,16 @@ function App() {
       <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
-            <label>Weight (lbs)</label>
+            <select value={unit} onChange={(e) => setUnit(e.target.value)}>
+              <option value="metric">Metric System(kg, meter)</option>
+              <option value="imperial">Imperial System(lbs, inches)</option>
+            </select>
+            <br/>
+            <label>Weight ({unit == "metric" ? "kg" : "lbs"})</label>
             <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
           </div>
           <div>
-            <label>Height (in)</label>
+            <label>Height ({unit == "metric" ? "meters" : "inches"})</label>
             <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
           </div>
           <div>
