@@ -1,67 +1,91 @@
-import './App.css';
-import './index.css'
-import React, {useState} from 'react'
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
-  // state
-  const [weight, setWeight] = useState(0)
-  const [height, setHeight] = useState(0)
-  const [bmi, setBmi] = useState('')
-  const [message, setMessage] = useState('')
+  const [darkMode, setDarkMode] = useState(false);
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [bmi, setBmi] = useState("");
+  const [message, setMessage] = useState("");
 
-  let calcBmi = (event) => {
-    event.preventDefault()
-    console.log(event);
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
 
-    if (weight === 0 || height === 0) {
-      alert('Please enter a valid weight and height')
-    } else {
-      let bmi = (weight / (height * height) * 703)
-      setBmi(bmi.toFixed(1))
-
-      
-        if (bmi < 18.5) {
-          setMessage('You are underweight')
-        }  else if (bmi >= 18.5 && bmi < 25) {
-          setMessage('You have healthy weight')
-        } else if (bmi>=25 && bmi <30) {
-          setMessage('You are overweight')
-        }else{
-          setMessage('You are obese')
-        }
-      
+  const calcBmi = (event) => {
+    event.preventDefault();
+    if (!weight || !height) {
+      alert("Please enter valid weight and height.");
+      return;
     }
-  }
+    let bmiValue = (weight / (height * height)) * 703;
+    setBmi(bmiValue.toFixed(1));
 
-  let reload = () => {
-    window.location.reload()
-  }
+    if (bmiValue < 18.5) {
+      setMessage("You are underweight ❗");
+    } else if (bmiValue >= 18.5 && bmiValue < 25) {
+      setMessage("You have a healthy weight ✅");
+    } else if (bmiValue >= 25 && bmiValue < 30) {
+      setMessage("You are overweight ⚠️");
+    } else {
+      setMessage("You are obese 🚨");
+    }
+  };
 
-  
+  const reload = () => {
+    setWeight("");
+    setHeight("");
+    setBmi("");
+    setMessage("");
+  };
+
   return (
-    <div className="app">
-    <div className='container'>
-      <h2 className='center'>BMI Calculator</h2>
+    <div className={darkMode ? "app dark" : "app light"}>
+      <div className="container">
+        <h2 className="title">BMI Calculator</h2>
+        <button className="theme-toggle" onClick={toggleTheme}>
+          {darkMode ? "☀ Light Mode" : "🌙 Dark Mode"}
+        </button>
+
         <form onSubmit={calcBmi}>
-          <div>
+          <div className="input-group">
             <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <input
+              type="number"
+              placeholder="Enter weight"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+            />
           </div>
-          <div>
+
+          <div className="input-group">
             <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            <input
+              type="number"
+              placeholder="Enter height"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+            />
           </div>
-          <div>
-            <button className='btn' type='submit'>Submit</button>
-            <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
+
+          <div className="btn-group">
+            <button className="btn submit" type="submit">
+              Calculate BMI
+            </button>
+            <button className="btn reload" onClick={reload} type="button">
+              Reset
+            </button>
           </div>
         </form>
-        <div className='center'>
-          <h3>Your BMI is: {bmi}</h3>
-          <p>{message}</p>
-        </div>
+
+        {bmi && (
+          <div className="result">
+            <h3>Your BMI is: <span>{bmi}</span></h3>
+            <p>{message}</p>
+          </div>
+        )}
+      </div>
     </div>
-  </div>
   );
 }
 
