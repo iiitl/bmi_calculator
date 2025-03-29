@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.inside_dv {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+ } 
+
+ .inside_dv input {
+  flex: 1; 
+  padding: 8px;
+} 
+
+.inside_dv select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: white;
+}
+
+
+
