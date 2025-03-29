@@ -8,6 +8,7 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [theme, setTheme] = useState("");
 
   let calcBmi = (event) => {
     event.preventDefault()
@@ -39,27 +40,39 @@ function App() {
 
   
   return (
-    <div className="app">
-    <div className='container'>
-      <h2 className='center'>BMI Calculator</h2>
+    <div className={`${theme} app`}>
+    <div className={`${theme} container`}>
+      <h2 className={`${theme} center`}>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
             <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <input className={`${theme}`} type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
           </div>
           <div>
             <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            <input className={`${theme}`} type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
           </div>
           <div>
-            <button className='btn' type='submit'>Submit</button>
-            <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
+            <button className={`${theme} btn`} type='submit'>Submit</button>
+            <button className={`${theme} btn btn-outline`} onClick={reload} type='submit'>Reload</button>
           </div>
         </form>
-        <div className='center'>
+        <div className={`${theme} center`}>
           <h3>Your BMI is: {bmi}</h3>
           <p>{message}</p>
         </div>
+        <button onClick={() => {
+        setTheme((prev) => {
+          if (prev === "") {
+            return "dark"
+          }
+          return ""
+        })
+      }}
+        className={`${theme} theme-btn`}
+      >
+        {theme === "dark" ? "Light Mode 🌙" : "Dark Mode ☀️"}
+      </button>
     </div>
   </div>
   );
