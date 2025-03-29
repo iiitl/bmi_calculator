@@ -8,6 +8,7 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const[color,setColor]=useState('')
 
   let calcBmi = (event) => {
     event.preventDefault()
@@ -22,12 +23,16 @@ function App() {
       
         if (bmi < 18.5) {
           setMessage('You are underweight')
+          setColor('red');
         }  else if (bmi >= 18.5 && bmi < 25) {
           setMessage('You have healthy weight')
+          setColor('green');
         } else if (bmi>=25 && bmi <30) {
           setMessage('You are overweight')
+          setColor('yellow');
         }else{
           setMessage('You are obese')
+          setColor('red');
         }
       
     }
@@ -36,7 +41,7 @@ function App() {
   let reload = () => {
     window.location.reload()
   }
-
+ 
   
   return (
     <div className="app">
@@ -58,7 +63,7 @@ function App() {
         </form>
         <div className='center'>
           <h3>Your BMI is: {bmi}</h3>
-          <p>{message}</p>
+          <p style={{color: color}}>{message}</p>
         </div>
     </div>
   </div>
