@@ -1,67 +1,133 @@
 import './App.css';
-import './index.css'
-import React, {useState} from 'react'
+import './index.css';
+import React, { useState } from 'react';
 
 function App() {
-  // state
-  const [weight, setWeight] = useState(0)
-  const [height, setHeight] = useState(0)
-  const [bmi, setBmi] = useState('')
-  const [message, setMessage] = useState('')
+  // state variables
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
+  const [weightUnit, setWeightUnit] = useState('lbs'); // 'lbs' or 'kg'
+  const [heightUnit, setHeightUnit] = useState('in'); // 'in' or 'm'
+  const [bmi, setBmi] = useState('');
+  const [message, setMessage] = useState('');
 
-  let calcBmi = (event) => {
-    event.preventDefault()
-    console.log(event);
+  const calcBmi = (event) => {
+    event.preventDefault();
 
-    if (weight === 0 || height === 0) {
-      alert('Please enter a valid weight and height')
-    } else {
-      let bmi = (weight / (height * height) * 703)
-      setBmi(bmi.toFixed(1))
-
-      
-        if (bmi < 18.5) {
-          setMessage('You are underweight')
-        }  else if (bmi >= 18.5 && bmi < 25) {
-          setMessage('You have healthy weight')
-        } else if (bmi>=25 && bmi <30) {
-          setMessage('You are overweight')
-        }else{
-          setMessage('You are obese')
-        }
-      
+    if (!weight || !height) {
+      alert('Please enter a valid weight and height');
+      return;
     }
-  }
 
-  let reload = () => {
-    window.location.reload()
-  }
+    // Convert weight to lbs if necessary
+    let weightInLbs = weight;
+    if (weightUnit === 'kg') {
+      weightInLbs = weight * 2.20462;
+    }
 
-  
+    // Convert height to inches if necessary
+    let heightInInches = height;
+    if (heightUnit === 'm') {
+      heightInInches = height * 39.3701;
+    }
+
+    // BMI calculation using the imperial formula: (lbs / inches²) * 703
+    const bmiValue = (weightInLbs / (heightInInches * heightInInches)) * 703;
+    setBmi(bmiValue.toFixed(1));
+
+    if (bmiValue < 18.5) {
+      setMessage('You are underweight');
+    } else if (bmiValue >= 18.5 && bmiValue < 25) {
+      setMessage('You have a healthy weight');
+    } else if (bmiValue >= 25 && bmiValue < 30) {
+      setMessage('You are overweight');
+    } else {
+      setMessage('You are obese');
+    }
+  };
+
+  const reload = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="app">
-    <div className='container'>
-      <h2 className='center'>BMI Calculator</h2>
+      <div className="container">
+        <h2 className="center">BMI Calculator</h2>
         <form onSubmit={calcBmi}>
-          <div>
-            <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+          <div className="unit-selector">
+            <div className="unit-group">
+              <p>Weight Unit:</p>
+              <button
+                type="button"
+                className={weightUnit === 'lbs' ? 'active' : ''}
+                onClick={() => setWeightUnit('lbs')}
+              >
+                lbs
+              </button>
+              <button
+                type="button"
+                className={weightUnit === 'kg' ? 'active' : ''}
+                onClick={() => setWeightUnit('kg')}
+              >
+                kg
+              </button>
+            </div>
+            <div className="unit-group">
+              <p>Height Unit:</p>
+              <button
+                type="button"
+                className={heightUnit === 'in' ? 'active' : ''}
+                onClick={() => setHeightUnit('in')}
+              >
+                Inches
+              </button>
+              <button
+                type="button"
+                className={heightUnit === 'm' ? 'active' : ''}
+                onClick={() => setHeightUnit('m')}
+              >
+                Meters
+              </button>
+            </div>
           </div>
-          <div>
-            <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+          <div className="input-field">
+            <label>Weight ({weightUnit})</label>
+            <input
+              type="number"
+              placeholder={`Enter weight in ${weightUnit}`}
+              value={weight}
+              onChange={(e) => setWeight(parseFloat(e.target.value))}
+            />
           </div>
-          <div>
-            <button className='btn' type='submit'>Submit</button>
-            <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
+          <div className="input-field">
+            <label>
+              Height ({heightUnit === 'in' ? 'Inches' : 'Meters'})
+            </label>
+            <input
+              type="number"
+              placeholder={`Enter height in ${
+                heightUnit === 'in' ? 'inches' : 'meters'
+              }`}
+              value={height}
+              onChange={(e) => setHeight(parseFloat(e.target.value))}
+            />
+          </div>
+          <div className="button-group">
+            <button className="btn" type="submit">
+              Submit
+            </button>
+            <button className="btn btn-outline" onClick={reload} type="button">
+              Reload
+            </button>
           </div>
         </form>
-        <div className='center'>
+        <div className="result center">
           <h3>Your BMI is: {bmi}</h3>
           <p>{message}</p>
         </div>
+      </div>
     </div>
-  </div>
   );
 }
 
