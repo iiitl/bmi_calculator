@@ -21,6 +21,7 @@ function App() {
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
   const [error, setError] = useState('');
+  const [darkMode, setDarkMode] = useState(false);
 
   let calcBmi = (event) => {
     event.preventDefault()
@@ -59,9 +60,18 @@ function App() {
     setError('');
   }
 
+  const handleToggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
+
   
   return (
-    <div className="app">
+    <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
+      <div className="dark-mode-toggle">
+        <button className="btn-toggle" onClick={handleToggleDarkMode}>
+          {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+        </button>
+      </div>
     <div className='container'>
       <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
@@ -76,6 +86,13 @@ function App() {
           <div>
             <button className='btn' type='submit'>Submit</button>
             <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
+            {/* <button
+              className="btn btn-toggle"
+              type="button"
+              onClick={handleToggleDarkMode}
+            >
+              {darkMode ? 'Light Mode' : 'Dark Mode'}
+            </button> */}
           </div>
         </form>
         <div className='center'>
