@@ -1,38 +1,175 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to right, #6a84c6, #eea268);
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+h2.center {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 25px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+label {
+  display: block;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+input[type="text"]:focus {
+  border-color: #feb47b;
+  background-color: #fff;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background-color: #feb47b;
   color: white;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #ff7e5f;
+  transform: translateY(-2px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.btn-outline {
+  background-color: white;
+  color: #feb47b;
+  border: 2px solid #feb47b;
+}
+
+.btn-outline:hover {
+  background-color: #feb47b;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.bmi-output {
+  font-size: 1.4rem;
+  font-weight: bold;
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.underweight {
+  color: #ff6347; 
+  font-size: 1.6rem;
+}
+
+.healthy {
+  color: #32cd32; 
+  font-size: 1.6rem;
+}
+
+.overweight {
+  color: #ffa500;
+  font-size: 1.6rem;
+}
+
+.obese {
+  color: #dc143c; 
+  font-size: 1.6rem;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 30px;
   }
-  to {
-    transform: rotate(360deg);
+
+  h2.center {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  input[type="text"] {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  button {
+    padding: 12px;
+    font-size: 1rem;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 25px;
+  }
+
+  h2.center {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+
+  input[type="text"] {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  button {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
