@@ -45,11 +45,11 @@ function App() {
         <form onSubmit={calcBmi}>
           <div>
             <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <input type="number" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(Number(e.target.value))} />
           </div>
           <div>
             <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            <input type="number" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(Number(event.target.value))} />
           </div>
           <div>
             <button className='btn' type='submit'>Submit</button>
