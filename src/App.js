@@ -5,12 +5,12 @@ import React, { useState } from "react";
 function App() {
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
+  const [unit, setUnit] = useState("imperial"); // 'imperial' for lbs/inches, 'metric' for kg/meters
   const [bmi, setBmi] = useState("");
   const [message, setMessage] = useState("");
   const [weightError, setWeightError] = useState("");
   const [heightError, setHeightError] = useState("");
 
-  // Validate weight while typing
   const handleWeightChange = (e) => {
     const value = e.target.value;
     if (value === "" || isNaN(value) || parseFloat(value) <= 0) {
@@ -21,7 +21,6 @@ function App() {
     setWeight(value);
   };
 
-  // Validate height while typing
   const handleHeightChange = (e) => {
     const value = e.target.value;
     if (value === "" || isNaN(value) || parseFloat(value) <= 0) {
@@ -32,20 +31,24 @@ function App() {
     setHeight(value);
   };
 
-  let calcBmi = (event) => {
+  const calcBmi = (event) => {
     event.preventDefault();
 
     const weightNum = parseFloat(weight);
     const heightNum = parseFloat(height);
 
-    // Final validation before calculating BMI
     if (weightNum <= 0 || heightNum <= 0 || isNaN(weightNum) || isNaN(heightNum)) {
       setMessage("Invalid inputs. Please correct them before submitting.");
       return;
     }
 
-    // Calculate BMI
-    let bmiValue = (weightNum / (heightNum * heightNum)) * 703;
+    let bmiValue;
+    if (unit === "imperial") {
+      bmiValue = (weightNum / (heightNum * heightNum)) * 703;
+    } else {
+      bmiValue = weightNum / (heightNum * heightNum);
+    }
+
     setBmi(bmiValue.toFixed(1));
 
     if (bmiValue < 18.5) {
@@ -59,7 +62,7 @@ function App() {
     }
   };
 
-  let reload = () => {
+  const reload = () => {
     setWeight("");
     setHeight("");
     setBmi("");
@@ -74,10 +77,18 @@ function App() {
         <h2 className="center">BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
-            <label>Weight (lbs)</label>
+            <label>Unit System:</label>
+            <select value={unit} onChange={(e) => setUnit(e.target.value)}>
+              <option value="imperial">Imperial (lbs, inches)</option>
+              <option value="metric">Metric (kg, meters)</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Weight ({unit === "imperial" ? "lbs" : "kg"})</label>
             <input
               type="text"
-              placeholder="Enter Weight in lbs"
+              placeholder={`Enter Weight in ${unit === "imperial" ? "lbs" : "kg"}`}
               value={weight}
               onChange={handleWeightChange}
             />
@@ -85,10 +96,10 @@ function App() {
           </div>
 
           <div>
-            <label>Height (in)</label>
+            <label>Height ({unit === "imperial" ? "in" : "m"})</label>
             <input
               type="text"
-              placeholder="Enter height in inches"
+              placeholder={`Enter Height in ${unit === "imperial" ? "inches" : "meters"}`}
               value={height}
               onChange={handleHeightChange}
             />
