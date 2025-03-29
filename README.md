@@ -15,6 +15,8 @@ This is a **Body Mass Index (BMI) Calculator** built using **React.js**. Users c
 
 
 ## Demo ScreenShot
+<img src="Screenshot 2025-03-29 223335.png" width="500">
+<img src="Screenshot 2025-03-29 223409.png" width="500">
 
 
 ## 📝 Usage
