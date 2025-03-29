@@ -13,6 +13,13 @@
   }
 }
 
+@media (max-width: 768px) {
+  .container{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
