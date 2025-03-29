@@ -8,6 +8,7 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [unit, setUnit] = useState('metric')
 
   let calcBmi = (event) => {
     event.preventDefault()
@@ -16,7 +17,11 @@ function App() {
     if (weight === 0 || height === 0) {
       alert('Please enter a valid weight and height')
     } else {
-      let bmi = (weight / (height * height) * 703)
+      if (unit === 'imperial') {
+        bmi = (weight / (height * height)) * 703;
+      } else {
+        bmi = weight / ((height / 100) * (height / 100)); 
+      }
       setBmi(bmi.toFixed(1))
 
       
@@ -44,12 +49,19 @@ function App() {
       <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
-            <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+          <label>Weight ({unit === 'imperial' ? 'lbs' : 'kg'})</label> 
+          <input type="text" placeholder={`Enter Weight in ${unit === 'imperial' ? 'lbs' : 'kg'}`} value={weight} onChange={(e) => setWeight(e.target.value)} />
           </div>
           <div>
-            <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+          <label>Height ({unit === 'imperial' ? 'in' : 'cm'})</label> 
+          <input type="text" placeholder={`Enter Height in ${unit === 'imperial' ? 'inches' : 'cm'}`} value={height} onChange={(e) => setHeight(e.target.value)} />
+          </div>
+          <div>
+            <label>Select Unit  </label> 
+            <select value={unit} onChange={(e) => setUnit(e.target.value)}>
+              <option value="metric">kg, cm</option>
+              <option value="imperial">lbs, in</option>
+            </select>
           </div>
           <div>
             <button className='btn' type='submit'>Submit</button>
