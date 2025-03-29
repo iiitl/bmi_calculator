@@ -10,7 +10,7 @@
 
 .app {
   display: flex;
-  
+
   justify-content: center;
   align-items: center;
   width: 100vw;
@@ -44,13 +44,14 @@ input {
   border-radius: 8px;
   cursor: pointer;
 }
+
 /* unvisited link */
 
 
 
 .btn-outline {
   background-color: #ededed;
-    color: #000000;
+  color: #000000;
 }
 
 .center {
@@ -58,10 +59,11 @@ input {
   margin: 24px 0;
   color: #354665;
 }
-.input_val
-{
+
+.input_val {
   color: #354665;
 }
+
 p {
   margin: 10px 0;
 }
@@ -74,3 +76,29 @@ p {
   height: 200px;
 }
 
+/*Dark Mode*/
+.dark-mode {
+  background-color: #000000e6;
+  color: #ffffff;
+}
+
+.dark-mode .container {
+  background-color: #262626;
+  box-shadow: 0px 0px 12px #453d3d;
+}
+
+.dark-mode .btn {
+  background-color: #4dd0f4d6;
+  color: #121212;
+}
+
+.dark-mode .btn-change {
+  background-color: #ffffff12;
+  color: #ffffff;
+}
+
+.dark-mode h2,
+.dark-mode p,
+.dark-mode h3 {
+  color: #ffffff;
+}
