@@ -8,16 +8,24 @@ function App() {
   const [height, setHeight] = useState('');
   const [bmi, setBmi] = useState('');
   const [message, setMessage] = useState('');
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   const calcBmi = (event) => {
     event.preventDefault();
 
-    if (!weight || !height || weight <= 0 || height <= 0) {
-      alert('Please enter a valid weight and height');
+    const weightNum = parseFloat(weight);
+    const heightNum = parseFloat(height);
+
+    if (isNaN(weightNum) || isNaN(heightNum) || weightNum <= 0 || heightNum <= 0) {
+      alert('Please enter a valid numeric weight and height');
       return;
     }
 
-    let bmiValue = (weight / (height * height)) * 703;
+    let bmiValue = (weightNum / (heightNum * heightNum)) * 703;
     setBmi(bmiValue.toFixed(1));
 
     if (bmiValue < 18.5) {
@@ -39,16 +47,27 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className={`app ${darkMode ? 'dark' : 'light'}`}>
+      <button className="dark-mode-toggle" onClick={toggleDarkMode} style={{
+        border: '2px solid #ccc',
+        borderRadius: '12px',
+        padding: '8px 16px',
+        background: darkMode ? '#444' : '#f0f0f0',
+        color: darkMode ? '#fff' : '#000',
+        cursor: 'pointer',
+        transition: 'all 0.3s ease-in-out'
+      }}>
+        {darkMode ? '🌙 Dark Mode' : '☀️ Light Mode'}
+      </button>
       <div className="container">
         <h2 className="center">BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
             <label>Weight (lbs)</label>
             <input
-              type="text"
-              inputMode="decimal"
-              pattern="[0-9]*"
+              type="number"
+              step="0.1"
+              min="0.1"
               placeholder="Enter weight in lbs"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
@@ -58,9 +77,9 @@ function App() {
           <div>
             <label>Height (in)</label>
             <input
-              type="text"
-              inputMode="decimal"
-              pattern="[0-9]*"
+              type="number"
+              step="0.1"
+              min="0.1"
               placeholder="Enter height in inches"
               value={height}
               onChange={(e) => setHeight(e.target.value)}
