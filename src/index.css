@@ -15,33 +15,40 @@
   align-items: center;
   width: 100vw;
   min-height: 100vh;
+  /* padding: 1rem; */
 }
 
 .container {
   box-shadow: 0px 0px 12px #ccbdbd;
   border-radius: 8px;
-  padding: 3rem;
+  /* padding: 2rem; */
   max-width: 600px;
 }
 
 input {
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1.2rem; 
+   /* font size dec from 1.2rem to 1rem */
   padding: 15px 4px;
   margin: 8px 0;
-  border-radius: 8px;
+  border-radius: 6px; 
+  /* border radius dec from 8 to 6px */
 }
 
 .btn {
   display: block;
   width: 100%;
-  font-size: 1.2rem;
-  margin: 8px 0;
-  padding: 15px 0;
+  font-size: 1rem;
+  /* font size from 1.2 to 1 rem */
+  /* margin: 8px ; */
+    
+  padding: 12px ;
+   /* padding dec from 15px to 12px */
   background-color: #0077EE;
   color: #fff;
   border: 1px solid #333;
-  border-radius: 8px;
+  border-radius: 6px;
+  /* border radius dec from 8 to 6px */
   cursor: pointer;
 }
 /* unvisited link */
@@ -56,13 +63,14 @@ input {
 .center {
   text-align: center;
   margin: 24px 0;
+  /* changed margin from 24 to 20px */
   color: #354665;
 }
 .input_val
 {
   color: #354665;
 }
-p {
+p {  
   margin: 10px 0;
 }
 
@@ -72,5 +80,29 @@ p {
 
 .img-container img {
   height: 200px;
+}
+
+
+@media (max-width: 768px) {
+  input, .btn {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .center {
+    font-size: 1rem;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+  .img-container img {
+    height: auto;
+    max-width: 100%;
+  }
 }
 
