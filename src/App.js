@@ -19,12 +19,14 @@ function App() {
       let bmi = (weight / (height * height) * 703)
       setBmi(bmi.toFixed(1))
 
-      if (bmi < 25) {
-        setMessage('You are underweight')
+      if (bmi < 18.5) {
+        setMessage('You are underweight');
+      } else if (bmi >= 18.5 && bmi < 25) {
+        setMessage('You have a healthy weight');
       } else if (bmi >= 25 && bmi < 30) {
-        setMessage('You have healthy weight')
+        setMessage('You are overweight');
       } else {
-        setMessage('You are overweight')
+        setMessage('You are obese');
       }
     }
   }
