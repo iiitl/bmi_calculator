@@ -9,12 +9,17 @@ function App() {
   const [message, setMessage] = useState('');
   const [weightUnit, setWeightUnit] = useState('lbs');
   const [heightUnit, setHeightUnit] = useState('inches');
+  // Added state for error dialog
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   let calcBmi = (event) => {
     event.preventDefault();
 
     if (weight === 0 || height === 0) {
-      alert('Please enter a valid weight and height');
+      // Updated error handling to use custom error dialog instead of alert
+      setErrorMessage('Please enter a valid weight and height');
+      setShowError(true);
       return;
     }
 
@@ -45,12 +50,90 @@ function App() {
     }
   };
 
+  // Function to close the error dialog
+  const closeErrorDialog = () => {
+    setShowError(false);
+  };
+
   let reload = () => {
     window.location.reload();
   };
 
   return (
     <div className="app">
+      {/* Added error dialog box component */}
+      {showError && (
+        <div 
+          style={{ 
+            position: 'fixed', 
+            top: 0, 
+            left: 0, 
+            width: '100%', 
+            height: '100%', 
+            backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            zIndex: 1000 
+          }}
+        >
+          <div 
+            style={{ 
+              width: '300px', 
+              backgroundColor: 'white', 
+              borderRadius: '8px', 
+              overflow: 'hidden',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+            }}
+          >
+            <div 
+              style={{ 
+                backgroundColor: 'red', 
+                color: 'white', 
+                padding: '10px 15px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+              }}
+            >
+              <span>Error</span>
+              <span style={{ color: 'white', fontSize: '20px' }}>ⓘ</span>
+            </div>
+            <div 
+              style={{ 
+                padding: '20px', 
+                textAlign: 'center',
+                color: '#666'
+              }}
+            >
+              {errorMessage || 'Something went wrong'}
+            </div>
+            <div 
+              style={{ 
+                display: 'flex', 
+                justifyContent: 'center', 
+                padding: '10px'
+              }}
+            >
+              <button 
+                onClick={closeErrorDialog} 
+                style={{ 
+                  backgroundColor: 'red', 
+                  color: 'white', 
+                  border: 'none', 
+                  padding: '8px 25px', 
+                  borderRadius: '4px', 
+                  cursor: 'pointer',
+                  fontWeight: 'bold'
+                }}
+              >
+                CLOSE
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="container" style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
         <h2 className="center" style={{ marginBottom: '20px' }}>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
