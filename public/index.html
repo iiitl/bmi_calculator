@@ -1,43 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern BMI Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="glass-card">
+            <div class="header">
+                <h1><i class="fas fa-calculator"></i> BMI Calculator</h1>
+                <p>Check your body mass index</p>
+            </div>
+            
+            <div class="input-group">
+                <div class="input-field">
+                    <label for="weight"><i class="fas fa-weight"></i> Weight (kg)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="weight" placeholder="0.0" step="0.1" min="0">
+                        <span class="unit">kg</span>
+                    </div>
+                    <div class="range-slider">
+                        <input type="range" id="weight-range" min="30" max="200" value="70">
+                    </div>
+                </div>
+                
+                <div class="input-field">
+                    <label for="height"><i class="fas fa-ruler-vertical"></i> Height (cm)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="height" placeholder="0" min="0">
+                        <span class="unit">cm</span>
+                    </div>
+                    <div class="range-slider">
+                        <input type="range" id="height-range" min="100" max="250" value="170">
+                    </div>
+                </div>
+            </div>
+            
+            <button id="calculate-btn" class="primary-btn">
+                <i class="fas fa-calculator"></i> Calculate BMI
+            </button>
+            
+            <div class="result-container">
+                <div class="bmi-value-container">
+                    <div class="bmi-value" id="bmi-value">--</div>
+                    <div class="bmi-category" id="bmi-category">Your BMI</div>
+                </div>
+                
+                <div class="bmi-message" id="bmi-message">
+                    Enter your weight and height to calculate your BMI
+                </div>
+                
+                <div class="bmi-scale">
+                    <div class="scale-item underweight">
+                        <span>Underweight</span>
+                        <span>&lt; 18.5</span>
+                    </div>
+                    <div class="scale-item healthy">
+                        <span>Healthy</span>
+                        <span>18.5 - 24.9</span>
+                    </div>
+                    <div class="scale-item overweight">
+                        <span>Overweight</span>
+                        <span>25 - 29.9</span>
+                    </div>
+                    <div class="scale-item obese">
+                        <span>Obese</span>
+                        <span>≥ 30</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js">
+        document.addEventListener('DOMContentLoaded', function() {
+    // Get DOM elements
+    const weightInput = document.getElementById('weight');
+    const heightInput = document.getElementById('height');
+    const weightRange = document.getElementById('weight-range');
+    const heightRange = document.getElementById('height-range');
+    const calculateBtn = document.getElementById('calculate-btn');
+    const bmiValue = document.getElementById('bmi-value');
+    const bmiCategory = document.getElementById('bmi-category');
+    const bmiMessage = document.getElementById('bmi-message');
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    // Sync range sliders with number inputs
+    weightRange.addEventListener('input', function() {
+        weightInput.value = this.value;
+    });
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    heightRange.addEventListener('input', function() {
+        heightInput.value = this.value;
+    });
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+    weightInput.addEventListener('input', function() {
+        weightRange.value = this.value || 70;
+    });
+
+    heightInput.addEventListener('input', function() {
+        heightRange.value = this.value || 170;
+    });
+
+    // Calculate BMI function
+    function calculateBMI() {
+        const weight = parseFloat(weightInput.value);
+        const height = parseFloat(heightInput.value) / 100; // Convert cm to m
+
+        if (isNaN(weight) {
+            showError('Please enter a valid weight');
+            return;
+        }
+
+        if (isNaN(height) || height <= 0) {
+            showError('Please enter a valid height');
+            return;
+        }
+
+        const bmi = weight / (height * height);
+        displayResult(bmi);
+    }
+
+    // Display BMI result with appropriate styling
+    function displayResult(bmi) {
+        bmiValue.textContent = bmi.toFixed(1);
+
+        // Remove all previous classes
+        bmiValue.className = 'bmi-value';
+        bmiCategory.className = 'bmi-category';
+        
+        if (bmi < 18.5) {
+            bmiCategory.textContent = 'Underweight';
+            bmiMessage.textContent = 'You are underweight. Consider consulting a nutritionist for a healthy weight gain plan.';
+            bmiValue.classList.add('bmi-underweight');
+            bmiCategory.classList.add('bmi-underweight');
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+            bmiCategory.textContent = 'Healthy Weight';
+            bmiMessage.textContent = 'Great job! Your weight is within the healthy range. Maintain your lifestyle for optimal health.';
+            bmiValue.classList.add('bmi-healthy');
+            bmiCategory.classList.add('bmi-healthy');
+        } else if (bmi >= 25 && bmi <= 29.9) {
+            bmiCategory.textContent = 'Overweight';
+            bmiMessage.textContent = 'You are overweight. Consider increasing physical activity and improving your diet for better health.';
+            bmiValue.classList.add('bmi-overweight');
+            bmiCategory.classList.add('bmi-overweight');
+        } else {
+            bmiCategory.textContent = 'Obese';
+            bmiMessage.textContent = 'You are in the obese category. Please consult with a healthcare professional for guidance on weight management.';
+            bmiValue.classList.add('bmi-obese');
+            bmiCategory.classList.add('bmi-obese');
+        }
+    }
+
+    // Show error message
+    function showError(message) {
+        bmiValue.textContent = '--';
+        bmiCategory.textContent = 'Error';
+        bmiMessage.textContent = message;
+        
+        // Reset classes
+        bmiValue.className = 'bmi-value';
+        bmiCategory.className = 'bmi-category';
+    }
+
+    // Event listeners
+    calculateBtn.addEventListener('click', calculateBMI);
+
+    // Also calculate when pressing Enter in input fields
+    [weightInput, heightInput].forEach(input => {
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateBMI();
+            }
+        });
+    });
+
+    // Initialize with default values
+    weightInput.value = weightRange.value;
+    heightInput.value = heightRange.value;
+});
+    </script>
+</body>
 </html>
