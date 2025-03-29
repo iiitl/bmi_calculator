@@ -11,11 +11,23 @@
 
 .app {
   display: flex;
-  background-color: #000000;
   justify-content: center;
   align-items: center;
   width: 100vw;
   min-height: 100vh;
+}
+
+.dark-mode{
+  background-color: #000;
+}
+
+.change_mode{
+  height: 30px;
+  width: 180px;
+  color: #fca311;
+  background-color: #14213d;
+  border-radius: 7px;
+  cursor: pointer;
 }
 
 .container {
@@ -23,7 +35,6 @@
   border-radius: 8px;
   padding: 3rem;
   max-width: 600px;
-  background-color: #000000;
   color:#14213d;
 }
 
@@ -60,6 +71,9 @@ input {
 .center {
   text-align: center;
   margin: 24px 0;
+  color:#fca311;
+}
+h3{
   color: #fca311;
 }
 .input_val

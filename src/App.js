@@ -1,6 +1,6 @@
 import './App.css';
 import './index.css'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 function App() {
   // state
@@ -8,6 +8,19 @@ function App() {
   const [height, setHeight] = useState('')
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [text, setText]=useState('Switch To Dark Mode🌙')
+  const [darkMode, setdarkMode]=useState(false)
+
+  useEffect(() => {
+    document.body.classList.toggle("dark-mode", darkMode);
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
+
+  let changeMode=(event)=>{
+    event.preventDefault()
+    setText((prevText) => (prevText === "Switch To Light Mode☀️" ? "Switch To Dark Mode🌙" : "Switch To Light Mode☀️"));
+    setdarkMode((!darkMode))
+  }
 
   let calcBmi = (event) => {
     event.preventDefault()
@@ -19,7 +32,6 @@ function App() {
       let bmi = (weight / (height * height) * 703)
       setBmi(bmi.toFixed(1))
 
-      
         if (bmi < 18.5) {
           setMessage('You are underweight')
         }  else if (bmi >= 18.5 && bmi < 25) {
@@ -33,18 +45,23 @@ function App() {
     }
   }
 
+
+
   let reload = () => {
     window.location.reload()
   }
 
   
   return (
-    <div className="app">
+    <div className={`app ${darkMode ? "dark-mode" : ""}`}>
     <div className='container'>
+    <div className='center'>
+    <button className="change_mode" onClick={changeMode}>{text}</button>
+    </div>
       <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
-            <label class='label'>Weight (lbs)</label>
+            <label class='label'>Weight </label>
             <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
           </div>
           <div>
