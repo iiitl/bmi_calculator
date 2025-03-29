@@ -22,10 +22,20 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  background: linear-gradient(135deg, #282c34, #3a3f47);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .App-link {
   color: #61dafb;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.App-link:hover {
+  color: #21a1f1;
+  transform: scale(1.1);
 }
 
 @keyframes App-logo-spin {
@@ -36,3 +46,5 @@
     transform: rotate(360deg);
   }
 }
+
+
