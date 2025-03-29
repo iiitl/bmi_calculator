@@ -2,20 +2,38 @@ import './App.css';
 import './index.css'
 import React, {useState} from 'react'
 
+function ErrorDialog({ message, onClose }) {
+  return (
+    <div className="error-dialog-overlay">
+      <div className="error-dialog">
+        <h3>Error</h3>
+        <p>{message}</p>
+        <button className='btn btn-error' onClick={onClose}>Close</button>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   // state
   const [weight, setWeight] = useState(0)
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [error, setError] = useState('');
 
   let calcBmi = (event) => {
     event.preventDefault()
     console.log(event);
 
-    if (weight === 0 || height === 0) {
-      alert('Please enter a valid weight and height')
-    } else {
+    const weightNum = Number(weight)
+    const heightNum = Number(height)
+    if (isNaN(weightNum) || isNaN(heightNum) || weightNum <= 0 || heightNum <= 0) {
+      setError('Please enter valid input for weight and height');
+      return
+    }
+
+   
       let bmi = (weight / (height * height) * 703)
       setBmi(bmi.toFixed(1))
 
@@ -31,10 +49,14 @@ function App() {
         }
       
     }
-  }
+  
 
   let reload = () => {
     window.location.reload()
+  }
+
+  const closeErrorDialog = () => {
+    setError('');
   }
 
   
@@ -61,6 +83,7 @@ function App() {
           <p>{message}</p>
         </div>
     </div>
+    {error && <ErrorDialog message={error} onClose={closeErrorDialog} />}
   </div>
   );
 }
