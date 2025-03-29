@@ -37,11 +37,29 @@ function App() {
     window.location.reload()
   }
 
+  let toggle = () => {
+    setTheme(!theme)
+    if(theme == true){
+      document.querySelector("body").style.backgroundColor = "#121212"
+      document.querySelector("body").style.color = "#FFFFFF"
+      document.querySelector(".container").style.backgroundColor = "#1E1E1E"
+      document.querySelectorAll(".center").forEach((e) => {e.style.color = "#ffffff"})
+      document.querySelector(".button").style.backgroundColor = "#fffff"
+    }else{
+      document.querySelector("body").style.backgroundColor = "#FFFFFF"
+      document.querySelector("body").style.color = "#000000"
+      document.querySelector(".container").style.backgroundColor = "#ffffff"
+      document.querySelectorAll(".center").forEach((e) => {e.style.color = "#354665"})
+      document.querySelector(".button").style.backgroundColor = "#ffffff"
+    }
+  }
   
   return (
     <div className="app">
+      
     <div className='container'>
       <h2 className='center'>BMI Calculator</h2>
+      <button className='btn' onClick={toggle}>{!theme ? "Dark" : "Light"} Theme</button>
         <form onSubmit={calcBmi}>
           <div>
             <label>Weight (lbs)</label>
