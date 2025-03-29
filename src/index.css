@@ -57,7 +57,7 @@ input {
 
 .btn-outline:hover {
   background-color: #ccc;
-  transform: scale(1.02); /* Slight zoom-in effect */
+  transform: scale(1.02); 
 }
 
 .center {
