@@ -1,3 +1,4 @@
+**Resolves Issue:** [#13](https://github.com/iiitl/bmi_calculator/issues/13)
 # BMI Calculator
 
 ## 📌 Overview
