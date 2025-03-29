@@ -11,7 +11,7 @@ This is a **Body Mass Index (BMI) Calculator** built using **React.js**. Users c
 - Reset button to clear inputs without reloading the page
 
 ## 🚀 Live Demo
-A live version of the project can be accessed [here](#).
+A live version of the project can be accessed [here](#https://github.com/Sahasrakunku6/bmi_calculator/blob/pr2/BMI_CALC%20-%20Made%20with%20Clipchamp_1743242676069.mp4).
 
 
 ## 📝 Usage
