@@ -1,13 +1,19 @@
 import './App.css';
 import './index.css';
-import React, { useState } from 'react';
-
+import React, { useState,useEffect} from 'react';
 function App() {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [bmi, setBmi] = useState('');
   const [message, setMessage] = useState('');
   const [unit, setUnit] = useState('imperial'); 
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light'); 
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
   const calcBmi = (event) => {
     event.preventDefault();
 
@@ -50,14 +56,19 @@ function App() {
     setBmi('');
     setMessage('');
   };
-
+  const toggleTheme = () => { 
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
   return (
     <div className="app">
       <div className="container">
-        <h2 className="center">🔢 BMI Calculator</h2>
+      <button className="btn-theme" onClick={toggleTheme}>
+          {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+        </button>
         <button className="btn-toggle" onClick={toggleUnit}>
           Switch to {unit === 'imperial' ? 'Metric' : 'Imperial'} Units
         </button>
+        <h2 className="center">🔢 BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
             <label>Weight ({unit === 'imperial' ? 'lbs' : 'kg'})</label>
@@ -98,3 +109,11 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
