@@ -6,11 +6,12 @@
   margin: 0;
   padding: 0;
   font-family: 'Inter', sans-if;
+  color: #ffffff;
 }
 
 .app {
   display: flex;
-  
+  background-color: #000000;
   justify-content: center;
   align-items: center;
   width: 100vw;
@@ -22,6 +23,8 @@
   border-radius: 8px;
   padding: 3rem;
   max-width: 600px;
+  background-color: #000000;
+  color:#14213d;
 }
 
 input {
@@ -30,15 +33,16 @@ input {
   padding: 15px 4px;
   margin: 8px 0;
   border-radius: 8px;
+  text-align: center;
+  color: #000;
 }
-
 .btn {
   display: block;
   width: 100%;
   font-size: 1.2rem;
   margin: 8px 0;
   padding: 15px 0;
-  background-color: #0077EE;
+  background-color: #fca311;
   color: #fff;
   border: 1px solid #333;
   border-radius: 8px;
@@ -56,11 +60,11 @@ input {
 .center {
   text-align: center;
   margin: 24px 0;
-  color: #354665;
+  color: #fca311;
 }
 .input_val
 {
-  color: #354665;
+  color: #fca311;
 }
 p {
   margin: 10px 0;
@@ -73,4 +77,15 @@ p {
 .img-container img {
   height: 200px;
 }
-
+.output {
+  color: #fca311;
+}
+.motu_patlu{
+  color: #FF0000;
+}
+.healthy{
+  color:green;
+}
+.above{
+  color: yellow;
+}
