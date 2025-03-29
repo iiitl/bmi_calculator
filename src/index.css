@@ -58,6 +58,7 @@ input {
   margin: 24px 0;
   color: #354665;
 }
+
 .input_val
 {
   color: #354665;
@@ -74,3 +75,12 @@ p {
   height: 200px;
 }
 
+.text-red{
+  color:red;
+}
+.text-green{
+  color:green;
+}
+.text-yellow{
+  color:rgb(233, 233, 27);
+}
