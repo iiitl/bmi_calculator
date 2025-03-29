@@ -8,25 +8,22 @@ function App() {
   const [bmi, setBmi] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
   let calcBmi = (event) => {
     event.preventDefault();
 
     const weightNum = parseFloat(weight);
     const heightNum = parseFloat(height);
 
-    if (
-      isNaN(weightNum) ||
-      isNaN(heightNum) ||
-      weightNum <= 0 ||
-      heightNum <= 0
-    ) {
+    if (isNaN(weightNum) || isNaN(heightNum) || weightNum <= 0 || heightNum <= 0) {
       setError("Please enter valid positive numbers for weight and height.");
-      setMessage("");
-      setBmi();
+      setShowModal(true);
       return;
     }
 
     setError("");
+    setShowModal(false);
 
     let bmiValue = (weightNum / (heightNum * heightNum)) * 703;
     setBmi(bmiValue.toFixed(1));
@@ -42,11 +39,19 @@ function App() {
     }
   };
 
+  let reload = () => {
+    window.location.reload();
+  };
+
+  let closeModalAndReload = () => {
+    setShowModal(false);
+    window.location.reload();
+  };
+
   return (
     <div className="app">
       <div className="container">
         <h2 className="center">BMI Calculator</h2>
-        {error && <div className="error-box">{error}</div>}
         <form onSubmit={calcBmi}>
           <div>
             <label>Weight (lbs)</label>
@@ -70,6 +75,9 @@ function App() {
             <button className="btn" type="submit">
               Submit
             </button>
+            <button className="btn btn-outline" onClick={reload} type="button">
+              Reload
+            </button>
           </div>
         </form>
         <div className="center">
@@ -77,6 +85,18 @@ function App() {
           <p>{message}</p>
         </div>
       </div>
+
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <h3>Error</h3>
+            <p>{error}</p>
+            <button className="btn" onClick={closeModalAndReload}>
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
