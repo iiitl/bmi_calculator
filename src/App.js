@@ -8,6 +8,7 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [darkmode, setMode] = useState(0)
 
   let calcBmi = (event) => {
     event.preventDefault()
@@ -30,6 +31,7 @@ function App() {
           setMessage('You are obese')
         }
       
+
     }
   }
 
@@ -37,10 +39,36 @@ function App() {
     window.location.reload()
   }
 
-  
+  const ToggleMode = () => {
+      setMode(!darkmode)
+      let mode=document.querySelector(".container");
+      let btn=document.querySelector("#toggle");
+      let center=document.querySelector(".center");
+      let id=document.querySelector("#id");
+      if(darkmode){
+        id.style.backgroundColor = 'white';
+        id.style.color = 'black';
+        mode.style.backgroundColor = 'white';
+        mode.style.color = 'black';
+        center.style.backgroundColor = 'white';
+        center.style.color = 'black';
+        btn.style.backgroundColor='blue';
+        btn.style.color='white';
+      }else{
+        id.style.backgroundColor = 'black';
+        id.style.color = 'white';
+        center.style.backgroundColor = 'black';
+        center.style.color = 'white';
+        mode.style.backgroundColor = 'black';
+        mode.style.color = 'white';
+        btn.style.backgroundColor='white';
+        btn.style.color='black';
+      }
+  }
   return (
     <div className="app">
     <div className='container'>
+    <div><button id="toggle" onClick={ToggleMode}>{darkmode?'light mode' : 'dark mode'}</button></div>
       <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
@@ -56,7 +84,7 @@ function App() {
             <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
           </div>
         </form>
-        <div className='center'>
+        <div className='center' id="id">
           <h3>Your BMI is: {bmi}</h3>
           <p>{message}</p>
         </div>
