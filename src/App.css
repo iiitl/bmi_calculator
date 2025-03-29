@@ -36,3 +36,71 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode .container {
+  background-color: #1e1e1e;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode input {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+.dark-mode .btn {
+  background-color: #3a3a3a;
+  color: #e0e0e0;
+}
+
+.dark-mode .btn-outline {
+  border: 1px solid #e0e0e0;
+  color: #e0e0e0;
+}
+
+.dark-mode-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.dark-mode-toggle .toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.dark-mode-toggle .toggle-btn.dark {
+  background-color: #333;
+}
+
+.dark-mode-toggle .toggle-btn:hover {
+  transform: scale(1.1);
+}
+
+.dark-mode-toggle .toggle-btn svg {
+  color: #333;
+}
+
+.dark-mode-toggle .toggle-btn.dark svg {
+  color: #f0f0f0;
+}
