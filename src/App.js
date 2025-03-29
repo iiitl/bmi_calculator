@@ -8,6 +8,8 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [weightUnit, setWeightUnit] = useState('kg')
+  const [heightUnit, setHeightUnit] = useState('m')
 
   let calcBmi = (event) => {
     event.preventDefault()
@@ -16,7 +18,19 @@ function App() {
     if (weight === 0 || height === 0) {
       alert('Please enter a valid weight and height')
     } else {
-      let bmi = (weight / (height * height) * 703)
+      let weightInKg = weight;        
+      if (weightUnit === 'g') weightInKg = weight / 1000;
+      
+      if (weightUnit === 'lbs') weightInKg = weight * 0.4535;
+      if (weightUnit === 'oz') weightInKg = weight * 0.0283;
+      if (weightUnit === 'mg') weightInKg = weight / 1000000;
+      
+     
+      let heightInM = height;
+      if (heightUnit === 'cm') heightInM = height / 100;
+      if (heightUnit === 'ft') heightInM = height * 0.3048;
+      if (heightUnit === 'in') heightInM = height * 0.0254;
+      let bmi = (weightInKg / (heightInM * heightInM) )
       setBmi(bmi.toFixed(1))
 
       
@@ -44,12 +58,30 @@ function App() {
       <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
-            <label>Weight (lbs)</label>
+            <label>Weight</label>
             <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <select value={weightUnit} onChange={(e) => setWeightUnit(e.target.value)}>
+
+              <option value="kg">Kg (Kilograms)</option>
+              <option value="g">g (Grams)</option>
+              <option value="lbs">lbs (Pounds)</option>
+              <option value="mg">mg (Milligrams)</option>
+              
+              <option value="oz">oz (Ounces)</option>
+
+            </select>
           </div>
           <div>
+
             <label>Height (in)</label>
             <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            <select value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)}>
+              <option value="m">m (Meters)</option>
+              
+              <option value="cm">cm (Centimeters)</option>
+              <option value="ft">ft (Feet)</option>
+              <option value="in">in (Inches)</option>
+            </select>
           </div>
           <div>
             <button className='btn' type='submit'>Submit</button>
