@@ -8,6 +8,42 @@
   font-family: 'Inter', sans-if;
 }
 
+/* Dark Mode */
+.dark-mode {
+  background-color: rgb(44, 43, 43);
+  color: white;
+}
+.dark-mode .input-field {
+  background-color: #333;
+  color: white;
+  border: 1px solid white;
+}
+.dark-mode label{
+  color:white;
+}
+/* Button Styles */
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: #0077ee;
+  color: white;
+}
+.btn:hover {
+  opacity: 0.8;
+}
+.toggle-btn {
+  background-color: #0077EE;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+
 .app {
   display: flex;
   
@@ -56,7 +92,7 @@ input {
 .center {
   text-align: center;
   margin: 24px 0;
-  color: #354665;
+  color: #708bbe;
 }
 .input_val
 {

@@ -1,6 +1,6 @@
 import './App.css';
 import './index.css'
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 
 function App() {
   // state
@@ -9,6 +9,20 @@ function App() {
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
 
+    // State for Dark Mode
+    const[darkMode,setDarkMode]=useState(()=>{
+      return localStorage.getItem("theme")==="dark";
+    });
+    // Apply dark mode when toggled
+    useEffect(()=>{
+      if(darkMode){
+        document.body.classList.add("dark-mode");
+      }
+      else{
+        document.body.classList.remove("dark-mode");
+      }
+      localStorage.setItem("theme",darkMode?"dark":"light");
+    }, [darkMode]);
   let calcBmi = (event) => {
     event.preventDefault()
     console.log(event);
@@ -39,17 +53,23 @@ function App() {
 
   
   return (
-    <div className="app">
+    <div className={`app ${darkMode ?'dark-mode':''}`}>
     <div className='container'>
       <h2 className='center'>BMI Calculator</h2>
+      
+        {/* Dark Mode Toggle Button */}
+        <button className="toggle-btn" onClick={()=>setDarkMode(!darkMode)}>
+        {darkMode?"Light Mode":"Dark Mode"}
+        </button>
+
         <form onSubmit={calcBmi}>
           <div>
-            <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <label className="input-label">Weight (lbs)</label>
+            <input type="text" className="input-field" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
           </div>
           <div>
-            <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            <label className="input-label">Height (in)</label>
+            <input type="text" className="input-field" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
           </div>
           <div>
             <button className='btn' type='submit'>Submit</button>
