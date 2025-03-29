@@ -10,8 +10,8 @@ This is a **Body Mass Index (BMI) Calculator** built using **React.js**. Users c
 - Displays BMI result along with health category
 - Reset button to clear inputs without reloading the page
 
-## 🚀 Live Demo
-A live version of the project can be accessed [here](#https://github.com/Sahasrakunku6/bmi_calculator/blob/pr2/BMI_CALC%20-%20Made%20with%20Clipchamp_1743242676069.mp4).
+## 🚀 Demo ScreenShot
+<img src="Screenshot 2025-03-29 155310.png" width="700">
 
 
 ## 📝 Usage
@@ -21,5 +21,7 @@ A live version of the project can be accessed [here](#https://github.com/Sahasra
 4. The result will be displayed along with a health message.
 5. Click **Reset** to clear all inputs and start again.
 
+## Checkout
+- [x] I have read all the contributor guidelines for the repo.
 
 
