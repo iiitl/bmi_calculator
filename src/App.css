@@ -36,3 +36,77 @@
     transform: rotate(360deg);
   }
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px;
+}
+
+.modal-content {
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  width: 370px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 16px rgba(16, 14, 14, 0.2);
+  text-align: center;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.modal-header h2 {
+  font-size: 18px;
+  color: #ea1717;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ff5f6d;
+  transition: 0.3s;
+}
+
+.close-btn:hover {
+  color: #ff3e53;
+}
+
+.modal-body {
+  margin: 20px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.modal-footer {
+  text-align: center;
+}
+
+.modal-button {
+  padding: 10px 18px;
+  background: #28c76f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.modal-button:hover {
+  background: #21a65e;
+  transform: scale(1.05);
+}
