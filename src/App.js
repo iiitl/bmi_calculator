@@ -12,6 +12,7 @@ function App() {
   const [heightUnit, setHeightUnit] = useState('m')
 
   const [colourClass, setClass]= useState('white');
+  const [darkMode, setDarkMode] = useState(false);
 
   
   let calcBmi = (event) => {
@@ -55,39 +56,49 @@ function App() {
 
   
   return (
-    <div className="app">
-    <div className='container'>
-      <h2 className='center'>BMI Calculator</h2>
-        <form onSubmit={calcBmi}>
-          <div>
-            <label>Weight</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
-            <select value={weightUnit} onChange={(e) => setWeightUnit(e.target.value)}>
+    <div className={`app ${darkMode ?'dark-mode':''}`}>
+      <div className="app">
+      <div className='container'>
+        <h2 className='center'>BMI Calculator</h2>
 
-              <option value="kg">Kg (Kilograms)</option>
-              <option value="lbs">lbs (Pounds)</option>
+        
 
-            </select>
-          </div>
-          <div>
 
-            <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
-            <select value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)}>
-              <option value="m">m (Meters)</option>
-              <option value="in">in (Inches)</option>
-            </select>
+          <form onSubmit={calcBmi}>
+            <div>
+              <label>Weight</label>
+              <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+              <select value={weightUnit} onChange={(e) => setWeightUnit(e.target.value)}>
+
+                <option value="kg">Kg (Kilograms)</option>
+                <option value="lbs">lbs (Pounds)</option>
+
+              </select>
+            </div>
+            <div>
+
+              <label>Height (in)</label>
+              <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+              <select value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)}>
+                <option value="m">m (Meters)</option>
+                <option value="in">in (Inches)</option>
+              </select>
+            </div>
+            <div>
+              <button className='btn' type='submit'>Submit</button>
+              <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
+            </div>
+          </form>
+          <div className='center ' >
+            <h3 >Your BMI is: {bmi}</h3>
+            <p className={colourClass}>{message}</p>
           </div>
-          <div>
-            <button className='btn' type='submit'>Submit</button>
-            <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
-          </div>
-        </form>
-        <div className='center ' >
-          <h3 >Your BMI is: {bmi}</h3>
-          <p className={colourClass}>{message}</p>
-        </div>
-    </div>
+          <button className='btn darkmode'onClick={()=>setDarkMode(!darkMode)}>
+          {darkMode? 'Light Mode' :'Dark Mode'}
+        </button>
+      </div>
+      
+  </div>
   </div>
   );
 }
