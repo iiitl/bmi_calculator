@@ -1,48 +1,27 @@
-# Getting Started with Create React App
+**Resolves Issue:** [#4](https://github.com/iiitl/bmi_calculator/issues/4)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-## Set up the repo
-- Fork the repo
-- Clone it
-- Run npm install after making sure you have node and npm installed
+# BMI Calculator
 
-## PR guidelines
-- The PR should be made to the develop branch
-- If the PR passes all tests it will be merged
-  
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📌 Overview
+This is a **Body Mass Index (BMI) Calculator** built using **React.js**. Users can input their weight and height to calculate their BMI. The software also provides a message indicating whether they are underweight, normal weight, overweight, or obese.
 
 
-### `npm run build`
+## 🚀 Features
+- Calculates BMI based on weight (lbs) and height (inches).
+- Displays appropriate messages based on BMI categories.
+- Validates user inputs and shows an error modal for incorrect values.
+- Prevents submission of negative or non-numeric values.
+- Provides a reload button to reset inputs.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Demo ScreenShot
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Learn More
+## 📝 Usage
+1. Enter your weight and height in the respective fields with valid inputs.
+3. Click **Submit** to calculate your BMI.
+4. The result will be displayed along with a health message.
+5. Click **Reset** to clear all inputs and start again.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Checkout
+- [x] I have read all the contributor guidelines for the repo.
