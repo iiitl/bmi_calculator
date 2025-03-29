@@ -8,6 +8,11 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
 
   let calcBmi = (event) => {
     event.preventDefault()
@@ -39,8 +44,11 @@ function App() {
 
   
   return (
-    <div className="app">
+    <div className={`app ${theme}-theme`}>
     <div className='container'>
+    <button className='theme-toggle-btn' onClick={toggleTheme}>
+          Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
+        </button>
       <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>

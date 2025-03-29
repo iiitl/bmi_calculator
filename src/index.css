@@ -17,6 +17,27 @@
   min-height: 100vh;
 }
 
+.light-theme {
+  background-color: #ffffff;
+  color: #354665;
+}
+
+.dark-theme {
+  background-color: #282c34;
+  color: white;
+}
+
+.theme-toggle-btn {
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #0077EE;
+  color: white;
+}
+
 .container {
   box-shadow: 0px 0px 12px #ccbdbd;
   border-radius: 8px;
