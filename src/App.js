@@ -17,7 +17,7 @@ function App() {
     if (weight === 0 || height === 0) {
       alert('Please enter a valid weight and height')
     } else {
-      let bmi = (weight / (height * height) * 703)
+      let bmi = ((weight)/ (height * height))
       setBmi(bmi.toFixed(1))
 
       
@@ -39,44 +39,19 @@ function App() {
     window.location.reload()
   }
 
-  const ToggleMode = () => {
-      setMode(!darkmode)
-      let mode=document.querySelector(".container");
-      let btn=document.querySelector("#toggle");
-      let center=document.querySelector(".center");
-      let id=document.querySelector("#id");
-      if(darkmode){
-        id.style.backgroundColor = 'white';
-        id.style.color = 'black';
-        mode.style.backgroundColor = 'white';
-        mode.style.color = 'black';
-        center.style.backgroundColor = 'white';
-        center.style.color = 'black';
-        btn.style.backgroundColor='blue';
-        btn.style.color='white';
-      }else{
-        id.style.backgroundColor = 'black';
-        id.style.color = 'white';
-        center.style.backgroundColor = 'black';
-        center.style.color = 'white';
-        mode.style.backgroundColor = 'black';
-        mode.style.color = 'white';
-        btn.style.backgroundColor='white';
-        btn.style.color='black';
-      }
-  }
+  
   return (
     <div className="app">
     <div className='container'>
-    <div><button id="toggle" onClick={ToggleMode}>{darkmode?'light mode' : 'dark mode'}</button></div>
       <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
-            <label>Weight (lbs)</label>
+          <label>
+            Weight(kg)</label>
             <input type="number" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(Number(e.target.value))} />
           </div>
           <div>
-            <label>Height (in)</label>
+            <label>Height (m)</label>
             <input type="number" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(Number(event.target.value))} />
           </div>
           <div>
