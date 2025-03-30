@@ -1,6 +1,7 @@
 import './App.css';
 import './index.css'
 import React, {useState} from 'react'
+import Button from './components/Button';
 
 function App() {
   // state
@@ -46,18 +47,18 @@ function App() {
   return (
     <div className="app">
     <div className='container'>
-      <h2 className='center'>BMI Calculator</h2>
+      <h2 className='center'>BMI CALCULATOR</h2>
         <form onSubmit={calcBmi}>
-          <div>
+          <div className='title1'>
             <label>Weight (lbs)</label>
             <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
           </div>
-          <div>
+          <div className='title2'>
             <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            <input type="text" placeholder='Enter Height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
           </div>
           <div>
-            <button className='btn' type='submit'>Submit</button>
+            <button className='btn' type='submit' >Submit</button>
             <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
           </div>
         </form>

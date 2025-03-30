@@ -1,7 +1,14 @@
+body{
+  background-color: rgb(0, 0, 0);
+}
 .App {
   text-align: center;
+  background-color: rgb(0, 0, 0);
 }
-
+.container{
+  background-color: rgb(255, 255, 255);
+  padding:15px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -22,6 +29,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  
 }
 
 .App-link {
@@ -34,5 +42,36 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+.title1{
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+.title2{
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+.center{
+  font-weight: bolder;
+  color:black
+}
+.btn{
+  cursor: pointer;
+}
+@media only screen and (max-width:600px) and(orientation : landscape){
+  .container{
+    width:100%;
+  }
+}
+@media only screen and (max-width:600px) and(orientation : portrait){
+  .container{
+    width:100%;
+  }
+}
+@media (max-width: 600px){
+  .container {
+    width: 100%;
+    padding: 50px;
   }
 }
