@@ -4,21 +4,35 @@ import React, {useState} from 'react'
 
 function App() {
   // state
-  const [weight, setWeight] = useState(0)
-  const [height, setHeight] = useState(0)
+  const [weight, setWeight] = useState('')
+  const [height, setHeight] = useState('')
+  const [weightUnit, setWeightUnit] = useState('kg'); // Default kg
+  const [heightUnit, setHeightUnit] = useState('m'); // Default meters
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
 
   let calcBmi = (event) => {
     event.preventDefault()
     console.log(event);
-
-    if (weight === 0 || height === 0) {
-      alert('Please enter a valid weight and height')
-    } else {
-      let bmi = (weight / (height * height) * 703)
-      setBmi(bmi.toFixed(1))
-
+    let weightKg = parseFloat(weight);
+    let heightMeters = parseFloat(height);
+    if (!weightKg || !heightMeters || weightKg <= 0 || heightMeters <= 0) {
+      alert('Please enter a valid weight and height');
+      return;
+    }
+    // Convert weight to kg if it's in lbs
+    if (weightUnit === 'lbs') {
+      weightKg = weightKg * 0.453592;
+    }
+    // Convert height to meters
+    if (heightUnit === 'cm') {
+      heightMeters = heightMeters / 100;
+    } else if (heightUnit === 'in') {
+      heightMeters = heightMeters * 0.0254;
+    }
+     // Calculate BMI
+     let bmiValue = weightKg / (heightMeters * heightMeters);
+     setBmi(bmiValue.toFixed(1));
       
         if (bmi < 18.5) {
           setMessage('You are underweight')
@@ -31,7 +45,7 @@ function App() {
         }
       
     }
-  }
+  
 
   let reload = () => {
     window.location.reload()
@@ -43,13 +57,24 @@ function App() {
     <div className='container'>
       <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
-          <div>
-            <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+           {/* Weight Input */}
+           <div>
+            <label>Weight</label>
+            <input type="number" placeholder="Enter weight" value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <select value={weightUnit} onChange={(e) => setWeightUnit(e.target.value)}>
+              <option value="kg">kg</option>
+              <option value="lbs">lbs</option>
+            </select>
           </div>
-          <div>
-            <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+           {/* Height Input */}
+           <div>
+            <label>Height</label>
+            <input type="number" placeholder="Enter height" value={height} onChange={(e) => setHeight(e.target.value)} />
+            <select value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)}>
+              <option value="m">meters</option>
+              <option value="cm">cm</option>
+              <option value="in">inches</option>
+            </select>
           </div>
           <div>
             <button className='btn' type='submit'>Submit</button>
