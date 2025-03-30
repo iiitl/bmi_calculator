@@ -32,16 +32,22 @@ function App() {
     return true;
   };
 
+  const convertToMetric = (weight, height, unit) => {
+    if (unit === 'imperial') {
+      return {
+        weight: weight * 0.453592,
+        height: height * 0.0254
+      };
+    }
+    return { weight, height };
+  };
+
   const calcBmi = (event) => {
     event.preventDefault();
     if (!validateInputs()) return;
 
-    let bmi;
-    if (selectedUnit === 'metric') {
-      bmi = userWeight / (userHeight * userHeight);
-    } else {
-      bmi = (userWeight / (userHeight * userHeight)) * 703;
-    }
+    const { weight, height } = convertToMetric(userWeight, userHeight, selectedUnit);
+    let bmi = weight / (height * height);
     setCalculatedBmi(bmi.toFixed(1));
     
     if (bmi < 18.5) {
