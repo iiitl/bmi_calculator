@@ -3,6 +3,14 @@ import './index.css'
 import React, {useState} from 'react'
 
 function App() {
+  const KG_PER_LB = 0.453592;
+  const METERS_PER_CM = 0.01;
+  const METERS_PER_INCH = 0.0254;
+
+  const UNDERWEIGHT_THRESHOLD = 18.5;
+  const HEALTHY_THRESHOLD = 25;
+  const OVERWEIGHT_THRESHOLD = 30;
+
   // state
   const [weight, setWeight] = useState('')
   const [height, setHeight] = useState('')
@@ -14,31 +22,31 @@ function App() {
   let calcBmi = (event) => {
     event.preventDefault()
     console.log(event);
-    let weightKg = parseFloat(weight);
-    let heightMeters = parseFloat(height);
-    if (!weightKg || !heightMeters || weightKg <= 0 || heightMeters <= 0) {
+    let weightKg = Number(weight);
+    let heightMeters = Number(height);
+    if (isNaN(weightKg) || isNaN(heightMeters) || weightKg <= 0 || heightMeters <= 0) {
       alert('Please enter a valid weight and height');
       return;
     }
     // Convert weight to kg if it's in lbs
     if (weightUnit === 'lbs') {
-      weightKg = weightKg * 0.453592;
+      weightKg = weightKg * KG_PER_LB;
     }
     // Convert height to meters
     if (heightUnit === 'cm') {
       heightMeters = heightMeters / 100;
     } else if (heightUnit === 'in') {
-      heightMeters = heightMeters * 0.0254;
+      heightMeters = heightMeters * METERS_PER_INCH;
     }
      // Calculate BMI
      let bmiValue = weightKg / (heightMeters * heightMeters);
      setBmi(bmiValue.toFixed(1));
       
-        if (bmi < 18.5) {
+        if (bmiValue < UNDERWEIGHT_THRESHOLD) {
           setMessage('You are underweight')
-        }  else if (bmi >= 18.5 && bmi < 25) {
+        }  else if (bmiValue >= UNDERWEIGHT_THRESHOLD && bmiValue < HEALTHY_THRESHOLD) {
           setMessage('You have healthy weight')
-        } else if (bmi>=25 && bmi <30) {
+        } else if (bmiValue>=HEALTHY_THRESHOLD && bmiValue <OVERWEIGHT_THRESHOLD) {
           setMessage('You are overweight')
         }else{
           setMessage('You are obese')
@@ -78,7 +86,7 @@ function App() {
           </div>
           <div>
             <button className='btn' type='submit'>Submit</button>
-            <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
+            <button className='btn btn-outline' onClick={reload} type='button'>Reload</button>
           </div>
         </form>
         <div className='center'>
