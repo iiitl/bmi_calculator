@@ -3,9 +3,19 @@ import './index.css'
 import React, {useState,useEffect} from 'react'
 
 function App() {
+  const KG_PER_LB = 0.453592;
+  const METERS_PER_CM = 0.01;
+  const METERS_PER_INCH = 0.0254;
+
+  const UNDERWEIGHT_THRESHOLD = 18.5;
+  const HEALTHY_THRESHOLD = 25;
+  const OVERWEIGHT_THRESHOLD = 30;
+
   // state
-  const [weight, setWeight] = useState(0)
-  const [height, setHeight] = useState(0)
+  const [weight, setWeight] = useState('')
+  const [height, setHeight] = useState('')
+  const [weightUnit, setWeightUnit] = useState('kg'); // Default kg
+  const [heightUnit, setHeightUnit] = useState('m'); // Default meters
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
 
@@ -26,26 +36,38 @@ function App() {
   let calcBmi = (event) => {
     event.preventDefault()
     console.log(event);
-
-    if (weight === 0 || height === 0) {
-      alert('Please enter a valid weight and height')
-    } else {
-      let bmi = (weight / (height * height) * 703)
-      setBmi(bmi.toFixed(1))
-
+    let weightKg = Number(weight);
+    let heightMeters = Number(height);
+    if (isNaN(weightKg) || isNaN(heightMeters) || weightKg <= 0 || heightMeters <= 0) {
+      alert('Please enter a valid weight and height');
+      return;
+    }
+    // Convert weight to kg if it's in lbs
+    if (weightUnit === 'lbs') {
+      weightKg = weightKg * KG_PER_LB;
+    }
+    // Convert height to meters
+    if (heightUnit === 'cm') {
+      heightMeters = heightMeters / 100;
+    } else if (heightUnit === 'in') {
+      heightMeters = heightMeters * METERS_PER_INCH;
+    }
+     // Calculate BMI
+     let bmiValue = weightKg / (heightMeters * heightMeters);
+     setBmi(bmiValue.toFixed(1));
       
-        if (bmi < 18.5) {
+        if (bmiValue < UNDERWEIGHT_THRESHOLD) {
           setMessage('You are underweight')
-        }  else if (bmi >= 18.5 && bmi < 25) {
+        }  else if (bmiValue >= UNDERWEIGHT_THRESHOLD && bmiValue < HEALTHY_THRESHOLD) {
           setMessage('You have healthy weight')
-        } else if (bmi>=25 && bmi <30) {
+        } else if (bmiValue>=HEALTHY_THRESHOLD && bmiValue <OVERWEIGHT_THRESHOLD) {
           setMessage('You are overweight')
         }else{
           setMessage('You are obese')
         }
       
     }
-  }
+  
 
   let reload = () => {
     window.location.reload()
@@ -63,17 +85,28 @@ function App() {
         </button>
 
         <form onSubmit={calcBmi}>
-          <div>
-            <label className="input-label">Weight (lbs)</label>
-            <input type="text" className="input-field" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+           {/* Weight Input */}
+           <div>
+            <label>Weight</label>
+            <input type="number" placeholder="Enter weight" value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <select value={weightUnit} onChange={(e) => setWeightUnit(e.target.value)}>
+              <option value="kg">kg</option>
+              <option value="lbs">lbs</option>
+            </select>
           </div>
-          <div>
-            <label className="input-label">Height (in)</label>
-            <input type="text" className="input-field" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+           {/* Height Input */}
+           <div>
+            <label>Height</label>
+            <input type="number" placeholder="Enter height" value={height} onChange={(e) => setHeight(e.target.value)} />
+            <select value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)}>
+              <option value="m">meters</option>
+              <option value="cm">cm</option>
+              <option value="in">inches</option>
+            </select>
           </div>
           <div>
             <button className='btn' type='submit'>Submit</button>
-            <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
+            <button className='btn btn-outline' onClick={reload} type='button'>Reload</button>
           </div>
         </form>
         <div className='center'>
