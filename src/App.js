@@ -92,7 +92,7 @@ function App() {
             <h3>Error</h3>
             <p>{error}</p>
             <button className="btn" onClick={closeModalAndReload}>
-              OK
+              Enter Again
             </button>
           </div>
         </div>
