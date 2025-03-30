@@ -1,6 +1,6 @@
 import './App.css';
 import './index.css'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 function App() {
   const [weight, setWeight] = useState('')
@@ -8,6 +8,15 @@ function App() {
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
   const [error, setError] = useState(null)
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
 
   const validateInputs = () => {
     if (weight.trim() === '' || height.trim() === '') {
@@ -72,8 +81,24 @@ function App() {
   return (
     <div className="app">
       <div className='container'>
-        <h2 className='center'>BMI Calculator</h2>
-        
+      <div className="header-container">
+          <h2>BMI Calculator</h2>
+          <div className="theme-switcher">
+            {theme === 'light' ? (
+              <span className="theme-label active">Light</span>
+            ) : (
+              <span className="theme-label active">Dark</span>
+            )}
+            <label className="toggle-switch">
+              <input 
+                type="checkbox" 
+                checked={theme === 'dark'} 
+                onChange={toggleTheme} 
+              />
+              <span className="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
         {error && (
           <div className="error-dialog">
             <p>{error}</p>
