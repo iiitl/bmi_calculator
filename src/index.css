@@ -74,3 +74,13 @@ p {
   height: 200px;
 }
 
+.unit-toggle {
+  margin-bottom: 10px;
+}
+
+.unit-toggle select {
+  padding: 5px;
+  font-size: 1rem;
+}
+
+
