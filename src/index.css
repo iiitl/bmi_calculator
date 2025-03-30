@@ -74,3 +74,30 @@ p {
   height: 200px;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+  .btn {
+    font-size: 0.9rem;
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  input {
+    font-size: 0.9rem;
+    padding: 10px 6px;
+  }
+  .btn {
+    font-size: 0.8rem;
+    padding: 8px 0;
+  }
+}
+
