@@ -14,18 +14,18 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #1a237e;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #81d4fa;
 }
 
 .App-link {
-  color: #61dafb;
+  color: #81d4fa;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +35,71 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.error-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffe0b2;
+  color: #d84315;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  text-align: center;
+  font-size: 16px;
+}
+
+.error-dialog button {
+  background-color: #e64a19;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.error-dialog button:hover {
+  background-color: #d84315;
+}
+
+.app.dark .error-dialog {
+  background-color: #424242;
+  color: #ffcc80;
+}
+
+.app.dark .error-dialog button {
+  background-color: #f57c00;
+}
+
+.app.dark .error-dialog button:hover {
+  background-color: #e65100;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #64b5f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.btn:hover {
+  background-color: #42a5f5;
+}
+
+.btn.btn-outline {
+  background-color: transparent;
+  border: 2px solid #64b5f6;
+  color: #64b5f6;
+}
+
+.btn.btn-outline:hover {
+  background-color: #64b5f6;
+  color: white;
 }
