@@ -71,7 +71,7 @@ function App() {
       }}
         className={`${theme} theme-btn`}
       >
-        {theme === "dark" ? "Light Mode 🌙" : "Dark Mode ☀️"}
+        {theme === "dark" ? "Light Mode ☀️" : "Dark Mode 🌙"}
       </button>
     </div>
   </div>
