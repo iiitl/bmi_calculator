@@ -48,14 +48,33 @@ function App() {
     <div className="app">
     <div className='container'>
       <h2 className='center'>BMI Calculator</h2>
+         {/* Unit Selection */}
+         <div className="unit-selector">
+          <label>Select Unit:</label>
+          <select value={unit} onChange={(e) => setUnit(e.target.value)}>
+            <option value="imperial">lbs & inches</option>
+            <option value="metric">kg & meters</option>
+          </select>
+        </div>
+
         <form onSubmit={calcBmi}>
           <div>
-            <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <label>Weight ({unit === 'imperial' ? 'lbs' : 'kg'})</label>
+            <input
+              type="text"
+              placeholder={`Enter weight in ${unit === 'imperial' ? 'lbs' : 'kg'}`}
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+            />
           </div>
           <div>
-            <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            <label>Height ({unit === 'imperial' ? 'in' : 'm'})</label>
+            <input
+              type="text"
+              placeholder={`Enter height in ${unit === 'imperial' ? 'inches' : 'meters'}`}
+              value={height}
+              onChange={(event) => setHeight(event.target.value)}
+            />
           </div>
           <div>
             <button className='btn' type='submit'>Submit</button>
