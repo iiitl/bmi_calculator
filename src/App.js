@@ -8,6 +8,7 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [unit, setUnit] = useState('imperial');
 
   let calcBmi = (event) => {
     event.preventDefault()
@@ -16,7 +17,12 @@ function App() {
     if (weight === 0 || height === 0) {
       alert('Please enter a valid weight and height')
     } else {
-      let bmi = (weight / (height * height) * 703)
+      let bmi;
+      if (unit === 'imperial') {
+        bmi = (weight / (height * height)) * 703; 
+      } else {
+        bmi = weight / (height * height); 
+      }
       setBmi(bmi.toFixed(1))
 
       
