@@ -99,3 +99,15 @@ p {
   right: 0px;
   margin: 25px;
 }
+
+.dark-mode input{
+  background-color: rgb(33, 33, 36);
+}
+.dark-mode input{
+  border-color: white;
+  color: white;
+}
+
+.btn .btn-outline{
+  background-color: rgb(33, 33, 36);
+}
