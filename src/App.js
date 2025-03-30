@@ -38,7 +38,6 @@ function App() {
       setMessage('You are obese');
     }
   };
-
   const reload = () => {
     setWeight('');
     setHeight('');
