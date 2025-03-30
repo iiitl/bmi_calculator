@@ -138,3 +138,160 @@ body.dark {
   text-align: center;
   margin-top: 20px;
 }
+/* Light Mode */
+body.light {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Dark Mode */
+body.dark {
+  background-color: #333;
+  color: #f5f5f5;
+}
+
+/* App Container */
+.app {
+  padding: 20px;
+}
+
+/* Container */
+.container {
+  max-width: 500px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode Container */
+body.dark .container {
+  background-color: #444;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Theme Button */
+.theme-btn {
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.theme-btn:hover {
+  background-color: #45a049;
+}
+
+/* Label and Input Styling */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Input Field */
+input[type='text'] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Select Dropdown */
+.unit-select {
+  margin-left: 10px;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Button Styling */
+.btn {
+  margin: 5px;
+  padding: 12px 18px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-outline {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.center {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* BMI Result Box */
+.center h3 {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  input[type='text'] {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .btn,
+  .theme-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+
+  .unit-select {
+    margin-left: 0;
+    margin-top: 8px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 95%;
+    padding: 12px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  input[type='text'],
+  .unit-select {
+    width: 100%;
+  }
+
+  .btn,
+  .theme-btn {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
