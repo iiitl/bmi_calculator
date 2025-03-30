@@ -47,22 +47,14 @@
   }
 }
 
-.app.light {
-  background-color: #ffffff;
-  color: #000000;
+.checkbox {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
 }
-
-.app.dark {
-  background-color: #121212;
-  color: #ffffff;
+.checkbox input {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
-
-.app.dark .center {
-  color: #f7eded;
-}
-
-.btn.toggle-theme {
-  margin-bottom: 20px;
-}
-
 

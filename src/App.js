@@ -8,29 +8,27 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
-  const [theme, setTheme] = useState('light') 
+  const [isMetric, setIsMetric] = useState(false) 
 
   let calcBmi = (event) => {
     event.preventDefault()
-    console.log(event);
 
     if (weight === 0 || height === 0) {
       alert('Please enter a valid weight and height')
     } else {
-      let bmi = (weight / (height * height) * 703)
+      let bmi = isMetric 
+        ? (weight / (height * height)) : (weight / (height * height) * 703) 
       setBmi(bmi.toFixed(1))
 
-      
-        if (bmi < 18.5) {
-          setMessage('You are underweight')
-        }  else if (bmi >= 18.5 && bmi < 25) {
-          setMessage('You have healthy weight')
-        } else if (bmi>=25 && bmi <30) {
-          setMessage('You are overweight')
-        }else{
-          setMessage('You are obese')
-        }
-      
+      if (bmi < 18.5) {
+        setMessage('You are underweight')
+      } else if (bmi >= 18.5 && bmi < 25) {
+        setMessage('You have healthy weight')
+      } else if (bmi >= 25 && bmi < 30) {
+        setMessage('You are overweight')
+      } else {
+        setMessage('You are obese')
+      }
     }
   }
 
@@ -38,31 +36,50 @@ function App() {
     window.location.reload()
   }
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light') 
-  }
-
   return (
-    <div className={`app ${theme}`}> 
+    <div className='app'>
       <div className='container'>
-        <h2 className={`center ${theme}`}>BMI Calculator</h2>
-        <button className='btn toggle-theme' onClick={toggleTheme}> {theme === 'light' ? '🌙' : '☀️'}
-        </button>
+        <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
-            <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <label className='checkbox'>
+              <input type="checkbox" checked={isMetric} onChange={() => setIsMetric(!isMetric)} />
+              Use metric units (kg/m)
+            </label>
           </div>
           <div>
-            <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            <label>Weight ({isMetric ? 'kg' : 'lbs'})</label>
+            <input 
+              type="text" placeholder={`Enter Weight in ${isMetric ? 'kg' : 'lbs'}`} value={weight} onChange={(e) => setWeight(e.target.value)}/>
           </div>
           <div>
-            <button className='btn' type='submit'>Submit</button>
-            <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
+            <label>Height ({isMetric ? 'm' : 'in'})</label>
+            <input 
+              type="text" 
+              placeholder={`Enter height in ${isMetric ? 'meters' : 'inches'}`} 
+              value={height} 
+              onChange={(event) => setHeight(event.target.value)} 
+            />
+          </div>
+          <div>
+            <button 
+              className='btn' 
+              type='submit' 
+              style={{ marginRight: '10px', padding: '10px 20px' }} 
+            >
+              Submit
+            </button>
+            <button 
+              className='btn btn-outline' 
+              onClick={reload} 
+              type='submit' 
+              style={{ padding: '10px 20px' }} 
+            >
+              Reload
+            </button>
           </div>
         </form>
-        <div className={`center ${theme}`}>
+        <div className='center'>
           <h3>Your BMI is: {bmi}</h3>
           <p>{message}</p>
         </div>
