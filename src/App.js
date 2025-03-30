@@ -8,29 +8,44 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
-
+  const [alertWeight, setWeightAlert] = useState('')
+  const [alertHeight, setHeightAlert] = useState('')
+  
   let calcBmi = (event) => {
     event.preventDefault()
     console.log(event);
+    
+    const regex = /^\d+(\.\d+)?$/;
+    const weightNum = (weight !== 0) ? parseFloat(weight) : 0
+    const heightNum = (height !== 0) ? parseFloat(height) : 0
 
-    if (weight === 0 || height === 0) {
-      alert('Please enter a valid weight and height')
-    } else {
-      let bmi = (weight / (height * height) * 703)
+    if (regex.test(weight) === true && regex.test(height) === true && weightNum !== 0 && heightNum !== 0) {
+      setWeightAlert("")
+      setHeightAlert("")
+      let bmi = (weightNum / (heightNum * heightNum) * 703)
       setBmi(bmi.toFixed(1))
-
-      
-        if (bmi < 18.5) {
-          setMessage('You are underweight')
-        }  else if (bmi >= 18.5 && bmi < 25) {
-          setMessage('You have healthy weight')
-        } else if (bmi>=25 && bmi <30) {
-          setMessage('You are overweight')
-        }else{
-          setMessage('You are obese')
-        }
-      
+      if (bmi < 18.5) {
+        setMessage('You are underweight')
+      }  else if (bmi >= 18.5 && bmi < 25) {
+        setMessage('You have healthy weight')
+      } else if (bmi>=25 && bmi <30) {
+        setMessage('You are overweight')
+      }else{
+        setMessage('You are obese')
+      }
+    } else {
+      if ((regex.test(weight) === false || weightNum === 0) && (regex.test(height) === true && heightNum !== 0)) {
+        setWeightAlert("Enter valid weight")
+        setHeightAlert("")
+      } else if ((regex.test(weight) === true && weightNum !== 0) && (regex.test(height) === false || heightNum === 0)) {
+        setWeightAlert("")
+        setHeightAlert("Enter valid height")
+      } else {
+          setWeightAlert("Enter valid weight")
+          setHeightAlert("Enter valid height")
+      }
     }
+
   }
 
   let reload = () => {
@@ -44,12 +59,14 @@ function App() {
       <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
-            <label>Weight (lbs)</label>
+            <label>Weight (lbs)</label><span className="alert-weight" >{alertWeight}</span>
             <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+            
           </div>
           <div>
-            <label>Height (in)</label>
+            <label>Height (in)</label><span className="alert-height" >{alertHeight}</span>
             <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            
           </div>
           <div>
             <button className='btn' type='submit'>Submit</button>
