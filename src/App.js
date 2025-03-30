@@ -15,13 +15,15 @@ const UNITS = {
 
 function App() {
   // State
-  const [weight, setWeight] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
   const [bmi, setBmi] = useState('');
   const [message, setMessage] = useState('');
   const [weightUnit, setWeightUnit] = useState('kg');
   const [heightUnit, setHeightUnit] = useState('m');
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light'); // Load theme from localStorage
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [showDialog, setShowDialog] = useState(false);
+  const [dialogMessage, setDialogMessage] = useState('');
 
   // Theme Toggle
   const toggleTheme = () => {
@@ -31,7 +33,7 @@ function App() {
   };
 
   useEffect(() => {
-    document.body.className = theme; // Apply theme to body class
+    document.body.className = theme;
   }, [theme]);
 
   // Conversion functions
@@ -43,31 +45,44 @@ function App() {
     return unit === 'in' ? height * CONVERSION_FACTORS.inToM : parseFloat(height);
   };
 
+  // Input Validation
+  const isValidInput = (value) => {
+    return /^\d+(\.\d+)?$/.test(value) && parseFloat(value) > 0;
+  };
+
+  // Show Custom Dialog for Errors
+  const showErrorDialog = (message) => {
+    setDialogMessage(message);
+    setShowDialog(true);
+  };
+
   // BMI Calculation
   let calcBmi = (event) => {
     event.preventDefault();
 
-    if (weight === 0 || height === 0) {
-      alert('Please enter a valid weight and height');
+    // Input Validation
+    if (!isValidInput(weight) || !isValidInput(height)) {
+      showErrorDialog('Please enter valid positive numbers for weight and height.');
+      return;
+    }
+
+    // Convert to standard units (kg & meters)
+    let weightInKg = convertToKg(weight, weightUnit);
+    let heightInMeters = convertToMeters(height, heightUnit);
+
+    // BMI Formula
+    let bmi = weightInKg / (heightInMeters * heightInMeters);
+    setBmi(bmi.toFixed(1));
+
+    // BMI Message
+    if (bmi < 18.5) {
+      setMessage('You are underweight');
+    } else if (bmi >= 18.5 && bmi < 25) {
+      setMessage('You have a healthy weight');
+    } else if (bmi >= 25 && bmi < 30) {
+      setMessage('You are overweight');
     } else {
-      // Convert to standard units (kg & meters)
-      let weightInKg = convertToKg(weight, weightUnit);
-      let heightInMeters = convertToMeters(height, heightUnit);
-
-      // BMI Formula
-      let bmi = weightInKg / (heightInMeters * heightInMeters);
-      setBmi(bmi.toFixed(1));
-
-      // BMI Message
-      if (bmi < 18.5) {
-        setMessage('You are underweight');
-      } else if (bmi >= 18.5 && bmi < 25) {
-        setMessage('You have a healthy weight');
-      } else if (bmi >= 25 && bmi < 30) {
-        setMessage('You are overweight');
-      } else {
-        setMessage('You are obese');
-      }
+      setMessage('You are obese');
     }
   };
 
@@ -146,6 +161,18 @@ function App() {
           <h3>Your BMI is: {bmi}</h3>
           <p>{message}</p>
         </div>
+
+        {/* Error Dialog */}
+        {showDialog && (
+          <div className={`dialog-box ${theme}`}>
+            <div className="dialog-content">
+              <p>{dialogMessage}</p>
+              <button onClick={() => setShowDialog(false)} className="btn">
+                OK
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
