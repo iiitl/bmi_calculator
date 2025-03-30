@@ -1,6 +1,7 @@
 import './App.css';
 import './index.css'
 import React, {useState} from 'react'
+import { useEffect } from 'react';
 
 function App() {
   // state
@@ -8,6 +9,16 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    document.body.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
 
   let calcBmi = (event) => {
     event.preventDefault()
@@ -42,6 +53,9 @@ function App() {
     <div className="app">
     <div className='container'>
       <h2 className='center'>BMI Calculator</h2>
+      <button className="btn toggle-btn" onClick={toggleTheme}>
+          Switch to {theme === "light" ? "Dark" : "Light"} Mode
+        </button>
         <form onSubmit={calcBmi}>
           <div>
             <label>Weight (lbs)</label>
