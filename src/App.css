@@ -38,23 +38,6 @@
   transform: scale(1.1);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-.checkbox {
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
-}
-.checkbox input {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-}
+
 
