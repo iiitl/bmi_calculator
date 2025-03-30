@@ -8,23 +8,31 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [isMetric, setIsMetric] = useState(false);
 
+
+
+
+  
   let calcBmi = (event) => {
     event.preventDefault()
     console.log(event);
-
+const bmivariable=703;
+const overweightthreshold=25;
+const obeseThreshold=30;
+const underweightThreshold=18.5;
     if (weight === 0 || height === 0) {
       alert('Please enter a valid weight and height')
     } else {
-      let bmi = (weight / (height * height) * 703)
+      let bmi = (weight / (height * height) * bmivariable)
       setBmi(bmi.toFixed(1))
 
       
-        if (bmi < 18.5) {
+        if (bmi < underweightThreshold) {
           setMessage('You are underweight')
-        }  else if (bmi >= 18.5 && bmi < 25) {
+        }  else if (bmi >= underweightThreshold && bmi < overweightthreshold) {
           setMessage('You have healthy weight')
-        } else if (bmi>=25 && bmi <30) {
+        } else if (bmi>=overweightthreshold && bmi <obeseThreshold) {
           setMessage('You are overweight')
         }else{
           setMessage('You are obese')
