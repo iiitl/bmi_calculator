@@ -1,3 +1,4 @@
+/* General styles */
 .App {
   text-align: center;
 }
@@ -28,11 +29,72 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Error Dialog Styling */
+.error-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f8d7da; /* Light theme background color */
+  color: #721c24; /* Dark red color for the text */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  text-align: center;
+  font-size: 16px;
+}
+
+.error-dialog button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.error-dialog button:hover {
+  background-color: #d32f2f;
+}
+
+/* Dark Mode Adjustments for Error Dialog */
+.app.dark .error-dialog {
+  background-color: #3c3c3c; /* Dark background for error dialog in dark mode */
+  color: #f0ad4e; /* Yellow text color for visibility */
+}
+
+.app.dark .error-dialog button {
+  background-color: #f44336; /* Same red button in dark mode */
+}
+
+.app.dark .error-dialog button:hover {
+  background-color: #d32f2f; /* Button hover color in dark mode */
+}
+
+/* Additional styling for buttons */
+.btn {
+  padding: 10px 20px;
+  background-color: #61dafb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.btn:hover {
+  background-color: #21a1f1;
+}
+
+.btn.btn-outline {
+  background-color: transparent;
+  border: 2px solid #61dafb;
+  color: #61dafb;
+}
+
+.btn.btn-outline:hover {
+  background-color: #61dafb;
+  color: white;
 }
