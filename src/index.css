@@ -16,6 +16,40 @@
   width: 100vw;
   min-height: 100vh;
 }
+.reload-btn {
+  display: block;
+  width: 100%;
+  font-size: 1.2rem;
+  margin: 8px 0;
+  padding: 15px 0;
+  background-color: #0077EE;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+.result-box {
+  margin-top: 20px;
+  padding: 15px;
+  font-size: 1.2rem;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.light-theme .result-box {
+  background-color: #e3f2fd;
+  color: #0056b3;
+  border: 1px solid #0056b3;
+}
+
+.dark-theme .result-box {
+  background-color: #1e2a38;
+  color: #80d8ff;
+  border: 1px solid #80d8ff;
+}
 
 .bmi-title {
   color: #354665;
@@ -45,14 +79,14 @@
 }
 
 .light-theme .input-field {
-  background-color: #fff;
+  background-color: #ffffff;
   color: #000;
   border: 1px solid #ccc;
 }
 
 .dark-theme .input-field {
-  background-color: #444;
-  color: white;
+  background-color: #474343;
+  color: rgb(255, 255, 255);
   border: 1px solid #777;
 }
 
@@ -95,9 +129,6 @@ input {
   border-radius: 8px;
   cursor: pointer;
 }
-/* unvisited link */
-
-
 
 .btn-outline {
   background-color: #ededed;
