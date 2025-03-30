@@ -8,15 +8,19 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [darkMode, setDarkMode] = useState(false);
+  const toggleMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   let calcBmi = (event) => {
     event.preventDefault()
     console.log(event);
 
-    if (weight === 0 || height === 0) {
+    if (weight === 0 || height === 0 || height <0 || weight <0) {
       alert('Please enter a valid weight and height')
     } else {
-      let bmi = (weight / (height * height) * 703)
+      let bmi = (weight / ((height /100)*(height /100)) )
       setBmi(bmi.toFixed(1))
 
       
@@ -33,23 +37,29 @@ function App() {
     }
   }
 
-  let reload = () => {
-    window.location.reload()
-  }
-
+  const reload = () => {
+    setWeight('');
+    setHeight('');
+    setBmi(null);
+    setMessage('');
+  };
   
   return (
+    <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
     <div className="app">
     <div className='container'>
-      <h2 className='center'>BMI Calculator</h2>
+    <div className='header'>
+          <h1 className='center' style={{ display: 'inline-block', marginRight: 'auto' }}>BMI Calculator</h1>
+          <button className='toggle-mode' style={{ marginLeft: 'auto' }} onClick={toggleMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</button>
+        </div>
         <form onSubmit={calcBmi}>
           <div>
-            <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <label>Weight (kg)</label>
+            <input type="text" placeholder='Enter Weight in kg' value={weight} onChange={(e) => setWeight(e.target.value)} />
           </div>
           <div>
-            <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            <label>Height (cm)</label>
+            <input type="text" placeholder='Enter height in cm' value={height} onChange={(event) => setHeight(event.target.value)} />
           </div>
           <div>
             <button className='btn' type='submit'>Submit</button>
@@ -61,6 +71,7 @@ function App() {
           <p>{message}</p>
         </div>
     </div>
+  </div>
   </div>
   );
 }
