@@ -8,6 +8,7 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [curMode, setCurMode] = useState('light')
 
   let calcBmi = (event) => {
     event.preventDefault()
@@ -33,29 +34,40 @@ function App() {
     window.location.reload()
   }
 
+  let toggleMode = (mode) => {
+    if (mode === 'dark'){
+      setCurMode('dark');
+    } else{
+      setCurMode('light')
+    }
+  }
   
   return (
-    <div className="app">
+  <div className={`app ${curMode === 'dark' ? 'dark' : ''}`}>
     <div className='container'>
       <h2 className='center'>BMI Calculator</h2>
-        <form onSubmit={calcBmi}>
-          <div>
-            <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
-          </div>
-          <div>
-            <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
-          </div>
-          <div>
-            <button className='btn' type='submit'>Submit</button>
-            <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
-          </div>
-        </form>
-        <div className='center'>
-          <h3>Your BMI is: {bmi}</h3>
-          <p>{message}</p>
+      <div>
+        <button className="btn-1" onClick={()=>{toggleMode('light')}}>Light</button>
+        <button className="btn-2" onClick={()=>{toggleMode('dark')}}>Dark</button>
+      </div>
+      <form onSubmit={calcBmi}>
+        <div>
+          <label>Weight (lbs)</label>
+          <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
         </div>
+        <div>
+          <label>Height (in)</label>
+          <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+        </div>
+        <div>
+          <button className='btn' type='submit'>Submit</button>
+          <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
+        </div>
+      </form>
+      <div className='center'>
+        <h3>Your BMI is: {bmi}</h3>
+        <p>{message}</p>
+      </div>
     </div>
   </div>
   );

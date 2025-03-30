@@ -18,7 +18,7 @@
 }
 
 .container {
-  box-shadow: 0px 0px 12px #ccbdbd;
+  box-shadow: 0px 0px 12px #817b7b;
   border-radius: 8px;
   padding: 3rem;
   max-width: 600px;
@@ -38,11 +38,32 @@ input {
   font-size: 1.2rem;
   margin: 8px 0;
   padding: 15px 0;
-  background-color: #0077EE;
+  background-color: #28a745;
   color: #fff;
   border: 1px solid #333;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.btn-1 {
+  width: 40%;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  margin: 8px 15px;
+  padding: 15px 0;
+  background-color: #3976b3f5;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-2 {
+  width: 40%;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  margin: 8px 15px;
+  padding: 15px 0;
+  background-color: #3976b3f5;
+  color: #fff;
 }
 /* unvisited link */
 
