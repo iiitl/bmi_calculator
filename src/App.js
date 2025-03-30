@@ -83,7 +83,6 @@ function App() {
         <button className="toggle-btn" onClick={()=>setDarkMode(!darkMode)}>
         {darkMode?"Light Mode":"Dark Mode"}
         </button>
-
         <form onSubmit={calcBmi}>
            {/* Weight Input */}
            <div>
