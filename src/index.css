@@ -74,3 +74,67 @@ p {
   height: 200px;
 }
 
+/* Light Mode */
+body.light {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Dark Mode */
+body.dark {
+  background-color: #333;
+  color: #f5f5f5;
+}
+
+/* Container Styling */
+.app {
+  padding: 20px;
+}
+
+/* Theme Button */
+.theme-btn {
+  margin-bottom: 15px;
+  padding: 8px 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Button Styling */
+.theme-btn:hover {
+  background-color: #45a049;
+}
+
+/* Other Styling */
+.unit-select {
+  margin-left: 10px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.btn {
+  margin: 5px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-outline {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.center {
+  text-align: center;
+  margin-top: 20px;
+}
