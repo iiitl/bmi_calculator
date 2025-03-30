@@ -46,3 +46,37 @@
   border-radius: 5px;
   text-align: center;
 }
+
+.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode input {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #555555;
+}
+
+.btn {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.dark-mode .btn {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.dark-mode .btn:hover {
+  background-color: #0056b3;
+}
+
+.dark-mode h2.center, 
+.dark-mode h3 {
+  color: #007bff;
+}

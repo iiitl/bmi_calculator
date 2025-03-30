@@ -8,6 +8,7 @@ function App() {
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
+  const [darkMode, setDarkMode] = useState(false)
 
   const BMI_MULTIPLIER = 703;
   const UNDERWEIGHT_THRESHOLD = 18.5;
@@ -42,9 +43,15 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
       <div className='container'>
         <h2 className='center'>BMI Calculator</h2>
+        <button 
+          className='btn toggle-btn' 
+          onClick={() => setDarkMode(!darkMode)}
+        >
+        Switch Theme
+        </button>
         {error && <div className="error-box">{error}</div>}
         <form onSubmit={calcBmi}>
           <div>
