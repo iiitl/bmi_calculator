@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #f627de;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,6 +27,77 @@
 .App-link {
   color: #61dafb;
 }
+.app.light {
+  background-color: #fff;
+  color: #333;
+}
+
+.app.light .container {
+  background-color: #f4f4f4;
+}
+
+.app.light input, .app.light button {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.app.light .btn {
+  background-color: #4090f2;
+  color: white;
+}
+
+.app.light .btn-outline {
+  background-color: #4090f2;
+  color: white;
+}
+.app.light h2, .app.light h3, .app.light p {
+  color: #333; 
+}
+
+.app.light .mode-toggle-btn {
+  background-color: #d47263;
+  color: rgb(239, 222, 137);
+  padding: 10px;
+  border: none;
+  margin-top: 20px;
+  align-items: center;
+  margin-left: 70px;
+}
+.app.dark {
+  background-color: #2c2c2c;
+  color: #f0f0f0;
+}
+
+.app.dark .container {
+  background-color: #040005;
+}
+
+.app.dark input, .app.dark button {
+  background-color: #444;
+  color: #f0f0f0;
+  border: 1px solid #555;
+}
+
+.app.dark .btn {
+  background-color: #b9f93a;
+  color: rgb(4, 0, 0);
+}
+
+.app.dark .btn-outline {
+  background-color: #b9f93a;
+  color: rgb(4, 0, 0);
+}
+
+.app.dark .mode-toggle-btn {
+  background-color: #f72da3;
+  color: #060885;
+  padding: 10px;
+  border: none;
+  margin-top: 30px;
+  margin-left: 70px;
+}
+
 
 @keyframes App-logo-spin {
   from {
