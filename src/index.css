@@ -74,3 +74,26 @@ p {
   height: 200px;
 }
 
+.text {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: large;
+  color: #354665;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.input-field {
+  margin-left: 10px;
+  font-size: medium;
+  font-style: italic;
+  background-color: #ffffff;
+  font-family: 'Times New Roman', Times, serif;
+  border-radius: 8px;
+  border-color: #354665;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
