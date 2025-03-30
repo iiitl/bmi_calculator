@@ -1,6 +1,29 @@
 .App {
   text-align: center;
 }
+.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+.dark-mode .App-header {
+  background-color: #1e1e1e;
+}
+
+.dark-mode input {
+  background-color: #333;
+  color: white;
+  border: 1px solid white;
+}
+
+.dark-mode .btn {
+  background-color: #555;
+  color: white;
+}
+
+.dark-mode .btn:hover {
+  background-color: #777;
+}
 
 .App-logo {
   height: 40vmin;

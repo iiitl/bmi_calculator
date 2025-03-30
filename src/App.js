@@ -8,6 +8,7 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [darkMode, setDarkMode] = useState(false);
 
   let calcBmi = (event) => {
     event.preventDefault();
@@ -38,12 +39,17 @@ function App() {
     setBmi('');
     setMessage('');
   }
-
+  let toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
   
   return (
-    <div className="app">
+    <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
     <div className='container'>
       <h2 className='center'>BMI Calculator</h2>
+      <button className='btn toggle-mode' onClick={toggleDarkMode}>
+          {darkMode ? 'Light Mode' : 'Dark Mode'}
+        </button>
         <form onSubmit={calcBmi}>
           <div>
             <label>Weight (lbs)</label>
