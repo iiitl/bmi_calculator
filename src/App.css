@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.unit-selector {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.unit-selector select {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: white;
+  font-size: 14px;
+}
+
+.unit-selector select:focus {
+  outline: none;
+  border-color: #4a6fa5;
+}
