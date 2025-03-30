@@ -16,14 +16,14 @@ function App() {
         <button className='theme-toggle-btn' onClick={toggleTheme}>
           Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
         </button>
-        <h2 className='center'>BMI Calculator</h2>
+        <h2 className={`center bmi-title ${theme}-theme`}>BMI Calculator</h2>
         <form>
           <div>
-            <label>Weight (lbs)</label>
+            <label className='contrast-text'>Weight (lbs)</label>
             <input className={`input-field ${theme}-theme`} type='text' placeholder='Enter Weight in lbs' />
           </div>
           <div>
-            <label>Height (in)</label>
+            <label className='contrast-text'>Height (in)</label>
             <input className={`input-field ${theme}-theme`} type='text' placeholder='Enter height in inches' />
           </div>
           <div>

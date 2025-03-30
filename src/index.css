@@ -17,6 +17,14 @@
   min-height: 100vh;
 }
 
+.bmi-title {
+  color: #354665;
+}
+
+.dark-theme .bmi-title {
+  color: #00aaff;
+}
+
 .light-theme {
   background-color: #ffffff;
   color: #354665;
