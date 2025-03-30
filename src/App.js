@@ -3,39 +3,37 @@ import './index.css'
 import React, {useState} from 'react'
 
 function App() {
-  // state
-  const [weight, setWeight] = useState(0)
-  const [height, setHeight] = useState(0)
-  const [bmi, setBmi] = useState('')
-  const [message, setMessage] = useState('')
+  const [weight, setWeight] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [bmi, setBmi] = useState('');
+  const [message, setMessage] = useState('');
 
   let calcBmi = (event) => {
-    event.preventDefault()
-    console.log(event);
+    event.preventDefault();
 
     if (weight === 0 || height === 0) {
-      alert('Please enter a valid weight and height')
-    } else {
-      let bmi = (weight / (height * height) * 703)
-      setBmi(bmi.toFixed(1))
-
-      
-        if (bmi < 18.5) {
-          setMessage('You are underweight')
-        }  else if (bmi >= 18.5 && bmi < 25) {
-          setMessage('You have healthy weight')
-        } else if (bmi>=25 && bmi <30) {
-          setMessage('You are overweight')
-        }else{
-          setMessage('You are obese')
-        }
-      
+      alert('Please enter a valid weight and height');
+      return;
     }
-  }
+
+    let bmi = (weight / (height * height) * 703);
+    setBmi(bmi.toFixed(1));
+
+    // FIXED BMI CATEGORIES HERE
+    if (bmi < 18.5) {
+      setMessage('You are underweight');
+    } else if (bmi >= 18.5 && bmi < 25) {
+      setMessage('You have healthy weight');
+    } else if (bmi >= 25 && bmi < 30) {
+      setMessage('You are overweight');
+    } else {
+      setMessage('You are obese');
+    }
+  };
 
   let reload = () => {
-    window.location.reload()
-  }
+    window.location.reload();
+  };
 
   
   return (
@@ -45,11 +43,11 @@ function App() {
         <form onSubmit={calcBmi}>
           <div>
             <label>Weight (lbs)</label>
-            <input type="text" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} />
+            <input type="number" placeholder='Enter Weight in lbs' value={weight} onChange={(e) => setWeight(e.target.value)} min="1"/>
           </div>
           <div>
             <label>Height (in)</label>
-            <input type="text" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)} />
+            <input type="number" placeholder='Enter height in inches' value={height} onChange={(event) => setHeight(event.target.value)}min="1" />
           </div>
           <div>
             <button className='btn' type='submit'>Submit</button>
