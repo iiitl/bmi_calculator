@@ -12,13 +12,28 @@ function App() {
 
   const checkInput = () => {
     if (isNaN(weight) || weight <= 0) {
-      return 'Please enter a valid weight greater than 0.';
+      return 'Please enter a valid weight';
     }
     if (isNaN(height) || height <= 0) {
-      return 'Please enter a valid height greater than 0.';
+      return 'Please enter a valid height';
     }
     return '';
   };
+
+  let formDisable = ()=> {
+    var form = document.querySelector("form");
+    if (error != '') {
+      form.querySelectorAll("input").forEach(input => input.disabled = true);
+    } else if(error == ''){
+      form.querySelectorAll("input").forEach(input => input.disabled = false);
+    }
+  }
+
+  let formEnable = ()=> {
+    var form = document.querySelector("form");
+    form.querySelectorAll("input").forEach(input => input.disabled = false);
+  }
+  
 
   let calcBmi = (event) => {
     event.preventDefault();
@@ -77,8 +92,13 @@ function App() {
             <button className='btn btn-outline' onClick={reload} type='button'>Reload</button>
           </div>
         </form>
+        {error  && formDisable()}
         {error && (<div className="error-box">
           <p>{error}</p>
+          <button onClick={() => {
+            setError('');
+            formEnable();
+          }} >Ok</button>
         </div>
         )}
         <div className='center'>
