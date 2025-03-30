@@ -8,6 +8,7 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [theme, setTheme] = useState('light') 
 
   let calcBmi = (event) => {
     event.preventDefault()
@@ -37,11 +38,16 @@ function App() {
     window.location.reload()
   }
 
-  
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light') 
+  }
+
   return (
-    <div className="app">
-    <div className='container'>
-      <h2 className='center'>BMI Calculator</h2>
+    <div className={`app ${theme}`}> 
+      <div className='container'>
+        <h2 className={`center ${theme}`}>BMI Calculator</h2>
+        <button className='btn toggle-theme' onClick={toggleTheme}> {theme === 'light' ? '🌙' : '☀️'}
+        </button>
         <form onSubmit={calcBmi}>
           <div>
             <label>Weight (lbs)</label>
@@ -56,12 +62,12 @@ function App() {
             <button className='btn btn-outline' onClick={reload} type='submit'>Reload</button>
           </div>
         </form>
-        <div className='center'>
+        <div className={`center ${theme}`}>
           <h3>Your BMI is: {bmi}</h3>
           <p>{message}</p>
         </div>
+      </div>
     </div>
-  </div>
   );
 }
 
