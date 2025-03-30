@@ -2,6 +2,23 @@ import './App.css';
 import './index.css'
 import React, {useState} from 'react'
 
+const BMI_CATEGORIES = {
+  UNDERWEIGHT: { threshold: 18.5, message: 'You are underweight' },
+  HEALTHY: { threshold: 25, message: 'You have healthy weight' },
+  OVERWEIGHT: { threshold: 30, message: 'You are overweight' },
+  OBESE: { message: 'You are obese' }
+}
+// Error messages
+const ERROR_MESSAGES = {
+  EMPTY_INPUT: 'Please enter both weight and height',
+  INVALID_NUMBER: 'Please enter a valid number for weight',
+  POSITIVE_NUMBER: 'Weight and height must be positive numbers',
+  POSITIVE_WEIGHT: 'Weight must be a positive number',
+  POSITIVE_HEIGHT: 'Height must be a positive number'
+}
+// Conversion factor for imperial BMI calculation
+const BMI_CONVERSION_FACTOR = 703;
+
 function App() {
   const [weight, setWeight] = useState('')
   const [height, setHeight] = useState('')
